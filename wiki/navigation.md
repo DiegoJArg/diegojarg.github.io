@@ -3,7 +3,7 @@
   -- Do NOT remove the leading `#` character.
   -->
 
-# Your wiki name
+# DiegoJArg
 
 
 <!--
@@ -11,7 +11,7 @@
   -- (Read: http://dynalon.github.io/mdwiki/#!customizing.md#Theme_chooser)
   -->
 
-[gimmick:theme](spacelab)
+[gimmick:theme](litera)
 
 
 <!--
@@ -23,8 +23,9 @@
 [Download](pages/download.md)
 
 <!-- A more complex navigation example: ----------------------------------------
-
-[Menu Item 1]()
+  -->
+  
+[DiegoJArg]()
 
   * # SubMenu Heading 1
   * [SubMenu Item 1](pages/subitem1.md)
@@ -40,6 +41,9 @@
 
 [Menu Item 3](pages/item3.md)
 
+[gimmick:themechooser](Choose theme)
+
+<!--
 ---------------------------------------------------------------------------- -->
 
 <!--
