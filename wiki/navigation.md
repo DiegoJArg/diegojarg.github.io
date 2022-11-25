@@ -1,67 +1,18 @@
-<!--
-  -- Name of your wiki
-  -- Do NOT remove the leading `#` character.
-  -->
-
-# DiegoJArg
-
-
-<!--
-  -- Default theme
-  -- (Read: http://dynalon.github.io/mdwiki/#!customizing.md#Theme_chooser)
-  -->
-
 [gimmick:theme](slate)
 
-
-<!--
-  -- Navigation
-  -- (Read: http://dynalon.github.io/mdwiki/#!quickstart.md#Adding_a_navigation)
-  -->
-
-[About](pages/about.md)
-[Download](pages/download.md)
-
-<!-- A more complex navigation example: --------->
-  
 [DiegoJArg]()
 
-  * # SubMenu Heading 1
+  * # SubMenu Heading 2
   * [SubMenu Item 1](pages/subitem1.md)
   * [SubMenu Item 2](pages/subitem2.md)
-  - - - -
-  * # SubMenu Heading 2
-  * [SubMenu Item 3](pages/subitem3.md)
+  * [Download](pages/download.md)
   - - - -
   * # SubMenu Heading 3
   * [SubMenu Item 3](pages/subitem3.md)
+  * [About](pages/about.md)
+  - - - -
+  * # SubMenu Heading 3
 
-[Menu Item 2](pages/item2.md)
 
-[Menu Item 3](pages/item3.md)
-
-[gimmick:themechooser](Choose theme)
-
-<!---------------------------------------------------- -->
-
-<!--
-  -- Change the Language
-  -- Could be useful when there's more than one language wiki.
-  -->
-
-<!--
-[Change the Language]()
-
-  * [English (United States)](/en_US/)
-  * [English (United Kingdom)](/en_GB/)
-  * [Italian](/it/)
--->
-
-<!--
-  -- Let the user choose a theme
-  -- (Read: http://dynalon.github.io/mdwiki/#!quickstart.md#Adding_a_navigation)
-  -->
-
-<!--
-[gimmick:themechooser](Choose theme)
--->
+<!-- * [gimmick:themechooser](Choose theme)
+ -->
