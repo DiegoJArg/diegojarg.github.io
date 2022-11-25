@@ -11,7 +11,7 @@
   -- (Read: http://dynalon.github.io/mdwiki/#!customizing.md#Theme_chooser)
   -->
 
-[gimmick:theme](litera)
+[gimmick:theme](slate)
 
 
 <!--
@@ -22,8 +22,7 @@
 [About](pages/about.md)
 [Download](pages/download.md)
 
-<!-- A more complex navigation example: ----------------------------------------
-  -->
+<!-- A more complex navigation example: --------->
   
 [DiegoJArg]()
 
@@ -43,8 +42,7 @@
 
 [gimmick:themechooser](Choose theme)
 
-<!--
----------------------------------------------------------------------------- -->
+<!---------------------------------------------------- -->
 
 <!--
   -- Change the Language
