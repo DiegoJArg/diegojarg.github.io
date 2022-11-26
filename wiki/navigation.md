@@ -3,7 +3,7 @@
 [DiegoJArg]()
 
   * # SubMenu Heading 2
-  * [SubMenu Item 1](pages/subitem1.md)
+  * [Home](https://diegojarg.github.io/wiki/index.html#!index.md)
   * [SubMenu Item 2](pages/subitem2.md)
   * [Download](pages/download.md)
   - - - -
