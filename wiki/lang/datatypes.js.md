@@ -1,7 +1,7 @@
-C: Tipos de datos
+Javascript: Tipos de datos
 =====================
 
-```
+```javascript
 var a = { prop: 'a' };
 var i = 0;
 var b = { prop: [] };

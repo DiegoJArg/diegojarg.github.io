@@ -13,6 +13,11 @@
   - - - -
   * # SubMenu Heading 3
 
+[R](lang/R.md)
+[Py](lang/Py.md)
+[Lua](lang/Lua.md)
+[JS](lang/JS.md)
+
 
 <!-- * [gimmick:themechooser](Choose theme)
  -->
