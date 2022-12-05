@@ -1,14 +1,53 @@
 Lua
 =====================
 
+Hello World
+-----------
+
+```
+io.write("Goodbye, World!")
+```
+
+```
+require "iuplua"
+
+dlg = iup.dialog{iup.label{title="Goodbye, World!"}; title="test"}
+dlg:show()
+
+if (not iup.MainLoopLevel or iup.MainLoopLevel()==0) then
+  iup.MainLoop()
+end
+```
+
+
+
+```
+-- defines a factorial function
+function fact (n)
+  if n == 0 then
+    return 1
+  else
+    return n * fact(n-1)
+  end
+end
+
+print("enter a number:")
+a = io.read("*n")
+
+-- reads a number
+print(fact(a))
+
+```
+
 
 Call a function
 ---------------
 
-```{lua}
+```
 
 -- Lua functions accept any number of arguments; missing arguments are nil-padded, extras are dropped.
 function fixed (a, b, c) print(a, b, c) end
+
 fixed() --> nil nil nil
 fixed(1, 2, 3, 4, 5) --> 1 2 3
 
