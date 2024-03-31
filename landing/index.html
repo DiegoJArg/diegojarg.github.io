@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Landing Page • Jacobi Diego
+    <title>Landing Page | Jacobi Diego
     </title>
     <meta name="description" content="Landing Page de Diego Jacobi. Ingeniero en Electronica.">
 
@@ -12,7 +12,7 @@
 
     :root {  
       --color-land-bg     : black;
-      --color-land-border : rgb(160, 181, 230);
+      --color-land-border : steelblue; /* rgb(160, 181, 230); */
       --color-land-text   : white;
       --color-odd-bg      : rgb(91, 155, 213);
       --color-odd-border  : rgb(160, 181, 230);
@@ -23,96 +23,111 @@
       --font-family-primary: "Manrope", sans-serif;
     }
 
+    /* Define the HTML font-size to be able to use 'rem' as scaling unit */
+    html { font-size: 15px; }
+    /*@media only screen and (max-width: 1204px) { html{ font-size: 20px; }  }*/
+    @media only screen and (max-width: 768px)  { html{ font-size: 10px; }  }
+
     *, ::after, ::before { margin: 0px; padding: 0px; box-sizing: border-box; }
     body { width: auto; background-color: var(--color-even-bg); font-family: var(--font-family-primary); }
     ul { list-style-type: none; padding: 0; }
 
     header, footer { background-color: var(--color-land-bg); text-align: left; color: var(--color-land-text); }
-    header > nav { border-bottom: 3px solid var(--color-land-border); }
-    footer > nav { border-top: 3px solid var(--color-land-border); }
-    nav { padding: 5px; text-align: center; }
+    header > nav { border-bottom: 0.3rem solid var(--color-land-border); }
+    footer > nav { border-top: 0.3rem solid var(--color-land-border); }
+    nav { padding: 0.5rem; text-align: center; }
     nav a { color: white; text-decoration: none; }
-    nav li {  font-size: 20px; display: inline-block; vertical-align: middle; text-align: center; }
+    nav li { display: inline-block; vertical-align: middle; text-align: center; }
+    nav li { font-size: 1.2rem; }
     nav li:before { content: '| '; }
     nav li:first-child:before { content: ''; }
 
 /*    section { height: 640px; } */
 
-    section.landing { height: calc(640px - 100px); }
-    section.landing { background-image: url("fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: left; }
-    section.landing { background-color: var(--color-land-bg); color: var(--color-land-text);  }
-    section.landing article { padding: 320px 0 0 10% ;   }
-    section.landing article > div { width: 90%; height: auto; padding: 30px; border: 3px solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
+    section.landing { height: calc(640px - 100px); position: relative; }
+    section.landing { background-image: url("fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: center; }
+    section.landing {  background-color: var(--color-land-bg); color: var(--color-land-text);  }
+    section.landing article { position: absolute; bottom: 2rem; padding: 0 0 0 10% ;   }
+    section.landing article > div { width: 90%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
     section.landing h1 { font-size: 1.8rem; }
-    section.landing p { font-size: 1.3rem; padding-top: 20px;  }
+    section.landing p { font-size: 1.3rem; padding-top: 1rem;  }
+
 
     section.coverletter { background-color: var(--color-land-bg); color: var(--color-land-text);  }
-    section.coverletter article { padding: 30px 0 30px 10% ;   }
-    section.coverletter article > div { width: 90%; height: auto; padding: 30px; border: 3px solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
+    section.coverletter article { padding: 3rem 0 3rem 5% ;   }
+    section.coverletter article > div { width: 95%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
     section.coverletter h1 { font-size: 1.8rem; }
-    section.coverletter p { font-size: 1.3rem; padding-top: 20px;  }
+    section.coverletter p { font-size: 1.3rem; padding-top: 1rem;  }
 
 
     section:nth-child(2n+2) { background-color: var(--color-even-bg); color: var(--color-even-text); }
     section:nth-child(2n+3) { background-color: var(--color-odd-bg); color: var(--color-odd-text); border-color: var(--color-odd-border); }
 
-    section.frases p { font-size: 1.3rem;  }
-    section.frases { padding: 30px; display: grid; grid-template-columns: auto auto ; gap: 30px; } 
-    section.frases article > div { background-color: rgba(0,0,0,0.5); color: white; }
-    section.frases article > div { height: 100%; padding: 30px; border: 3px solid var(--color-odd-border); border-radius: 20px; }
 
-    section.swiper { width:100%; height: 500px; background-color: transparent;  }
+
+    section.frases p { font-size: 1.8rem;  }
+    section.frases { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr)); gap: 1rem; } 
+    section.frases article > div { background-color: white; color: black; }
+    section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
+
+
+
+    section.swiper { width:100%; height: max(60vh,550px); background-color: transparent;  }
     div.swiper { width: 100%;  height: 100%;  }
-    div.swiper-slide { background-repeat: no-repeat; background-size: cover; background-position: left; }
+    div.swiper-slide { background-repeat: no-repeat; background-size: cover; background-position: center; }
     div.swiper-slide img { display: block; width: 100%; }
     div.swiper-slide { text-align: left; }
-    div.swiper-slide h1 {  color: white; padding: 30px  0px  0px 40px; font-size: 41px; font-weight: bold; }
-    div.swiper-slide h2 {  color: white; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
-    div.swiper-slide p  {  color: white; padding: 10px  0px 30px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); }
+    div.swiper-slide h1 {  color: white; padding:   3rem  3rem 0rem 4rem; font-size: 4rem; font-weight: bold; }
+    div.swiper-slide h2 {  color: white; padding: 0.5rem  3rem 0rem 4rem; font-size: 2rem; font-weight: 100; }
+    div.swiper-slide p  {  color: white; padding:   1rem  3rem 3rem 4rem; font-size: 1rem; line-height: 1.3; max-width: calc(800vw); }
     div.swiper-slide p  {  position: absolute; bottom: 0; text-align: justify; text-justify: inter-word; }
     div.swiper-pagination { color: white; }
 
-    section.fotos p { font-size: 1.3rem;  }
-    section.fotos { padding: 30px; display: grid; grid-template-columns: auto auto auto; gap: 30px; } 
+
+    section.fotos { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; } 
+    section.fotos div { font-size: 1.5rem;  }
     section.fotos article {  }
-    section.fotos article > div {  padding: 30px; border: 3px solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
+    section.fotos article > div {  padding: 2rem; border: 0.3rem solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
 
-    section.timeline p { font-size: 1.3rem;  }
-    section.timeline { padding: 60px; display: grid; grid-template-columns: auto; gap: 30px; } 
+    section.timeline { padding: 8vw; } 
     section.timeline article { }
-    section.timeline article > div {  height: 100%; padding: 0; border: 3px solid var(--color-even-border); border-radius: 20px;   }
+    section.timeline article > div {  height: 100%; padding: 0; border: 0.3rem solid var(--color-even-border); border-radius: 20px;   }
 
-    div.timeline p { font-size: 12px; }
-    div.timeline p > em { font-size: 12px; font-weight: bold; color: darkblue; font-style: normal; }
-    div.timeline p { padding-bottom: 1.5rem; padding-left: 20px; margin-left: 10px; position: relative; }
-    div.timeline p { border-left: 1px solid var(--color-land-border); display: list-item; list-style-type: none; }
-    div.timeline p:last-child { border: 0px; padding-bottom: 0; }
-    div.timeline p:before { content: '';
-        width: 15px; height: 15px; position: absolute; left: -8px; top: 0px;
+    section.timeline div.timeline p span.timeline-date { font-size: 2rem;  }
+    section.timeline div.timeline p { font-size: 1.2rem;  }
+    section.timeline div.timeline p > em { font-size: 1.2rem; font-weight: normal; color: maroon; font-style: normal; }
+    section.timeline div.timeline p > b { font-size: 1.2rem; font-weight: bold; color: black; font-style: normal; }
+    section.timeline div.timeline p > i { font-size: 1.2rem; font-weight: normal; color: mediumblue; font-style: normal; }
+    section.timeline div.timeline p { padding-bottom: 1.5rem; padding-left: 3rem; margin-left: 1rem; position: relative; }
+    section.timeline div.timeline p { border-left: 0.1rem solid var(--color-land-border); display: list-item; list-style-type: none; }
+    section.timeline div.timeline p:last-child { border: 0; padding-bottom: 0; }
+    section.timeline div.timeline p:before { content: '';
+        width: 2rem; height: 2rem; position: absolute; left: -1rem; top: 0rem;
         border-radius: 50%; background: white; /* box-shadow: 2px 2px 0px #bab5f8; */
     }
     .timeline-date { font-weight: bold; font-size: 18px; padding-right: 3px; }
-    div.timeline ul { margin-top: -1.3rem; padding-left: 20px; margin-left: 10px;  border-left: 1px solid var(--color-land-border); color: black; padding: 0px  0px 1.5rem 36px; font-size: 13px; line-height: 1.3; text-align: justify; list-style-type: circle;  }
-    div.timeline li:before { content: ""; margin-left: 0px; }
+    section.timeline div.timeline ul { margin-top: -1.3rem; padding-left: 20px; margin-left: 10px;  border-left: 1px solid var(--color-land-border); color: black; padding: 0px  0px 1.5rem 36px; font-size: 13px; line-height: 1.3; text-align: justify; list-style-type: circle;  }
+    section.timeline div.timeline li:before { content: ""; margin-left: 0px; }
 
     
     section.timeitem { padding: 0 5% 0 5%; }
-    section.timeitem div { padding: 50px 0 50px 0; }
-    section.timeitem div { border-left: 2px solid black; display: list-item; list-style-type: none;  }
-    section.timeitem h1 {  color: black; padding:  0px  0px  0px 40px; font-size: 41px; font-weight: bold; }
-    section.timeitem h2 {  color: black; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
-    section.timeitem p  {  color: black; padding: 10px  0px  0px 40px; font-size: 13px; line-height: 1.3; text-align: justify; text-justify: inter-word; }
-    section.timeitem ul {  color: black; padding: 5px  0px  0px 32px; font-size: 10px; line-height: 1.3; text-align: justify; text-justify: inter-word; list-style-type: circle;  }
-    section.timeitem li:before { content: ""; margin-left: 8px; }
+    section.timeitem div { padding: 5rem 0 5rem 0; }
+    section.timeitem div { border-left: 0.2rem solid black; display: list-item; list-style-type: none;  }
+    section.timeitem h1 {  color: black; padding:   0rem  0px  0px   4rem; font-size: 4rem; font-weight: bold; }
+    section.timeitem h2 {  color: black; padding: 0.5rem  0px  0px   4rem; font-size: 2rem; font-weight: 100; }
+    section.timeitem p  {  color: black; padding: 0.1rem  0px  0px   4rem; font-size: 1.3rem; line-height: 1.3; text-align: justify; }
+    section.timeitem ul {  color: black; padding: 0.5rem  0px  0px 3.2rem; font-size: 1rem; line-height: 1.2;  list-style-type: circle;  }
+    section.timeitem ul li {  margin-bottom: 0.3rem; padding-left: 0.8rem; }
+    section.timeitem li:before { content: "";  }
     
     section.timeitem h2:before { 
-    padding: 0 10px; left: calc(5% - 12px); content: ""; position: absolute;
-       width: 25px; height: 25px; border-radius: 50%; background: black; 
+    padding: 0 0rem; margin-top: -0.5rem; left: calc(5% - 1.5rem); content: ""; position: absolute;
+    width: 3rem; height: 3rem; border-radius: 50%; background: black; 
      }
 
     /*section.timeitem p:before { content: '';
         width: 25px; height: 25px; position: absolute; left: -23px; top: 0px;
-        border-radius: 50%; background: black; /* box-shadow: 2px 2px 0px #bab5f8; */
+        border-radius: 50%; background: black; 
     }*/
 
     </STYLE> 
@@ -342,16 +357,16 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
           <div class="timeline"> 
           <p> <span class="timeline-date">2024:</span> 
 <br/> Moved to <em>Fiumedinisi, Messina, Italy</em>
-<br/> Became Italian citizen by descent and <b>gained European work rights</b>.
-<br/> <b>TODAY:</b> Open to work. Open for relocation. Searcing for new challenges.
+<br/> Became Italian citizen by descent and <strong>gained European work rights</strong>.
+<br/> <strong>TODAY:</strong> Open to work. Open for relocation. Searcing for new challenges.
 
           </p><p> <span class="timeline-date">2023:</span> 
-<br/> Completed my studies in <b>Master in Data Science for Business</b>.
+<br/> Completed my studies in <i>Master in Data Science for Business</i>.
 <br/> Completed my genealogical research to start the process of Italian citizenship for descent.
 <br/> Started a new job in april in SADISA Engineering as <b>"E&I Engineer Supervisor "</b>.
 
           </p><p> <span class="timeline-date">2022:</span> 
-<br/> Started studying <b>Master in Data Science for Business</b> in <em>UTEL Mexico</em> through distance education.
+<br/> Started studying <i>Master in Data Science for Business</i> in <em>UTEL Mexico</em> through distance education.
 
           </p><p> <span class="timeline-date">2021:</span>
 <br/> Moved to <em>Rio Gallegos, Santa Cruz, Argentina</em> for my wife's work during the pandemics.
@@ -378,21 +393,21 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
 <br/> Started a job in march in DELPHI-Famar S.A. as <b>"Electronics Test Engineer | Automotive"</b>.
 
           </p><p> <span class="timeline-date">2011:</span> 
-<br/> Completed my studies in <b>Electronic Engineering</b>.
+<br/> Completed my studies in <i>Electronic Engineering</i>.
+
+          </p><p> <span class="timeline-date">2010:</span> 
+<br/> Got an scholarship for <i>Balseiro Institut</i>.
 
           </p><p> <span class="timeline-date">2009:</span> 
-<br/> Got an scholarship for <b>Balseiro Institut</b>.
-
-          </p><p> <span class="timeline-date">2009:</span> 
-<br/> Studied in <em>Ilmenau, Thüringen, Germany</em> for 6 months as part of the <b>UTN-DAAD scholarship program</b>.
+<br/> Studied in <em>Ilmenau, Thüringen, Germany</em> for 6 months as part of the <i>UTN-DAAD scholarship program</i>.
 
           </p><p> ...
 
           </p><p> <span class="timeline-date">2005:</span> 
-<br/> Started studying <b>Electronic Engineering</b> in UTN-FRP, Argentina.
+<br/> Started studying <i>Electronic Engineering</i> in UTN-FRP, Argentina.
 
           </p><p> <span class="timeline-date">2004:</span> 
-<br/> Completed technical school and became <b>Electronic Technician</b> in <em>Paraná</em>.
+<br/> Completed technical school and became <i>Electronic Technician</i> in <em>Paraná</em>.
 
           </p><p> ...
 
