@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Landing Page • Jacobi Diego
+    </title>
+    <meta name="description" content="Landing Page de Diego Jacobi. Ingeniero en Electronica.">
+
+    <STYLE>
+
+    :root {  
+      --color-land-bg     : black;
+      --color-land-border : rgb(160, 181, 230);
+      --color-land-text   : white;
+      --color-odd-bg      : rgb(91, 155, 213);
+      --color-odd-border  : rgb(160, 181, 230);
+      --color-odd-text    : black;
+      --color-even-bg     : white;
+      --color-even-border : rgb(160, 181, 230);
+      --color-even-text   : black;
+      --font-family-primary: "Manrope", sans-serif;
+    }
+
+    *, ::after, ::before { margin: 0px; padding: 0px; box-sizing: border-box; }
+    body { width: auto; background-color: var(--color-even-bg); font-family: var(--font-family-primary); }
+    ul { list-style-type: none; padding: 0; }
+
+    header, footer { background-color: var(--color-land-bg); text-align: left; color: var(--color-land-text); }
+    header > nav { border-bottom: 3px solid var(--color-land-border); }
+    footer > nav { border-top: 3px solid var(--color-land-border); }
+    nav { padding: 5px; text-align: center; }
+    nav a { color: white; text-decoration: none; }
+    nav li {  font-size: 20px; display: inline-block; vertical-align: middle; text-align: center; }
+    nav li:before { content: '| '; }
+    nav li:first-child:before { content: ''; }
+
+/*    section { height: 640px; } */
+
+    section.landing { height: calc(640px - 100px); }
+    section.landing { background-image: url("fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: left; }
+    section.landing { background-color: var(--color-land-bg); color: var(--color-land-text);  }
+    section.landing article { padding: 320px 0 0 10% ;   }
+    section.landing article > div { width: 90%; height: auto; padding: 30px; border: 3px solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
+    section.landing h1 { font-size: 1.8rem; }
+    section.landing p { font-size: 1.3rem; padding-top: 20px;  }
+
+    section:nth-child(2n+2) { background-color: var(--color-even-bg); color: var(--color-even-text); }
+    section:nth-child(2n+3) { background-color: var(--color-odd-bg); color: var(--color-odd-text); border-color: var(--color-odd-border); }
+
+    section.frases p { font-size: 1.3rem;  }
+    section.frases { padding: 30px; display: grid; grid-template-columns: auto auto ; gap: 30px; } 
+    section.frases article > div { background-color: rgba(0,0,0,0.5); color: white; }
+    section.frases article > div { height: 100%; padding: 30px; border: 3px solid var(--color-odd-border); border-radius: 20px; }
+
+    section.swiper { width:100%; height: 500px; background-color: transparent;  }
+    #FotoSwiper { width: 100%;  height: 100%;  }
+    #FotoSwiper .swiper-slide { border-radius: 20px; background-repeat: no-repeat; background-size: cover; background-position: left; }
+    #FotoSwiper .swiper-slide img { display: block; width: 100%; }
+    #FotoSwiper .swiper-slide:nth-child(1) { background-image: url("slide1.jpg"); }
+    #FotoSwiper .swiper-slide:nth-child(2) { background-image: url("slide2.jpg"); }
+    #FotoSwiper .swiper-slide:nth-child(3) { background-image: url("slide3.jpg"); }
+    #FotoSwiper .swiper-slide:nth-child(4) { background-image: url("fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: left; }
+    #FotoSwiper .swiper-slide { text-align: left; }
+    #FotoSwiper .swiper-slide h1 {  color: white; padding: 30px  0px  0px 40px; font-size: 41px; font-weight: bold; }
+    #FotoSwiper .swiper-slide h2 {  color: white; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
+    #FotoSwiper .swiper-slide p  {  color: white; padding: 10px  0px 30px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); }
+    #FotoSwiper .swiper-slide p  {  position: absolute; bottom: 0; text-align: justify; text-justify: inter-word; }
+    #FotoSwiper div.swiper-pagination { color: white; }
+
+    section.fotos p { font-size: 1.3rem;  }
+    section.fotos { padding: 30px; display: grid; grid-template-columns: auto auto auto; gap: 30px; } 
+    section.fotos article {  }
+    section.fotos article > div {  padding: 30px; border: 3px solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
+
+    section.timeline p { font-size: 1.3rem;  }
+    section.timeline { padding: 60px; display: grid; grid-template-columns: auto; gap: 30px; } 
+    section.timeline article { }
+    section.timeline article > div {  height: 100%; padding: 0; border: 3px solid var(--color-even-border); border-radius: 20px;   }
+
+    div.timeline p { font-size: 12px; }
+    div.timeline p > em { font-size: 12px; font-weight: bold; color: darkblue; font-style: normal; }
+    div.timeline p { padding-bottom: 1.5rem; padding-left: 20px; margin-left: 10px; position: relative; }
+    div.timeline p { border-left: 1px solid var(--color-land-border); display: list-item; list-style-type: none; }
+    div.timeline p:last-child { border: 0px; padding-bottom: 0; }
+    div.timeline p:before { content: '';
+        width: 15px; height: 15px; position: absolute; left: -8px; top: 0px;
+        border-radius: 50%; background: white; /* box-shadow: 2px 2px 0px #bab5f8; */
+    }
+    .timeline-date { font-weight: bold; font-size: 18px; padding-right: 3px; }
+
+    section.timeitem { padding: 0 5% 0 5%; }
+    section.timeitem div { padding: 50px 0 50px 0; }
+    section.timeitem div { border-left: 2px solid black; display: list-item; list-style-type: none;  }
+
+    section.timeitem h1 {  color: black; padding:  0px  0px  0px 40px; font-size: 41px; font-weight: bold; }
+    section.timeitem h2 {  color: black; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
+    section.timeitem p  {  color: black; padding: 10px  0px  0px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); text-align: justify; text-justify: inter-word; }
+
+    section.timeitem h2:before { 
+    padding: 0 10px; left: calc(5% - 12px); content: ""; position: absolute;
+       width: 25px; height: 25px; border-radius: 50%; background: black; 
+     }
+
+    /*section.timeitem p:before { content: '';
+        width: 25px; height: 25px; position: absolute; left: -23px; top: 0px;
+        border-radius: 50%; background: black; /* box-shadow: 2px 2px 0px #bab5f8; */
+    }*/
+
+    </STYLE> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+
+window.onload = function() {
+    //  alert('hi!');
+    // SWIPER - MIT Licensed Widget https://swiperjs.com/demos#default
+    
+    const swiper = new Swiper('#FotoSwiper', {
+      //direction: 'vertical', // optional parameter
+      // loop: true,
+      spaceBetween: 30,
+      effect: "fade",
+      pagination: {
+        el: '.swiper-pagination',
+        type: "fraction",
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+}
+</script>
+
+  </head>
+  <body>
+  
+  
+    <header>
+      <nav>
+        <ul>
+            <li> <a href="/Index.html">Home</a> </li>
+            <li> <a href="/Cover.html">Cover Letter</a> </li>
+            <li> <a href="/Resume.html">Resume</a> </li>
+            <li> <a href="/linkedin.html">LinkedIn</a> <i class="fa-brands fa-linkedin-in"></i> </li>
+                  <li> <a href="/Proyecto1.html">Proyecto1</a> </li>
+                  <li> <a href="/Proyecto2.html">Proyecto2</a> </li>
+                  <li> <a href="/Proyecto3.html">Proyecto3</a> </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="landing">
+        <article>
+          <div> 
+            <h1>JACOBI, Diego Matias</h1>
+            <p>Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+ </p>
+          </div>
+        </article>
+        <!--
+               <img class="img-cover" src="/img/hero/hero-home.jpg" alt="hero image" />
+         -->
+      </section>
+      
+      <section class="frases">
+        <article>
+          <div> <p> Triunfa el que persevera, se esmera, persiste, el que sabe que no es fácil pero continúa insistiendo, si se cansa descansa y luego continúa. 
+          </p> </div>
+        </article>
+        <article>
+          <div> <p> "La creencia no puede ser conocimiento. Sin embargo, el conocimiento implica, necesariamente, partir de una creencia."
+          </p> </div>
+        </article>
+        <article>
+          <div> <p> Solo un líder con visión de águila levanta a otro líder que esta caído. Porque entiende que no es competencia, es unidad.
+          </p> </div>
+        </article>
+        <article>
+          <div> <p> La vida no es sobre tener SUERTE, es sobre ejercer una DISCIPLINA.
+          </p> </div>
+        </article>
+      </section>
+      
+      <section class="swiper">
+              <!-- Slider main container -->
+              <div class="swiper" id="FotoSwiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide">
+                    <h1>Slide 1</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+                  </div>
+                  <div class="swiper-slide">
+                    <h1>Slide 2</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+                  </div>
+                  <div class="swiper-slide">
+                    <h1>Slide 3</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+                  </div>
+                  <div class="swiper-slide">
+                    <h1>Slide 4</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
+            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
+            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
+            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
+            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
+            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+                  </div>
+                  ...
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+              </div>
+      </section>
+
+      <section class="fotos">
+        <article>
+          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+          </div>
+        </article>
+        <article>
+          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+          </div>
+        </article>
+        <article>
+          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+          </div>
+        </article>
+      </section>
+      
+      <section class="timeline" id="timeline">
+          <div class="timeline"> <p> <span class="timeline-date">2024:</span> 
+I am a professional engineer with 10 years of solid experience, encompassing consumer electronics manufacturing, project management, and most recently, oil and gas instrumentation engineering.
+          </p><p> <span class="timeline-date">2024:</span> 
+The economic-political environment of Argentina offers competitive engineers with a challenging and always changing labour market to showcase their skills in their career paths. This context has shaped my diverse range of experiences and achievements, from which I have enjoyed learning across the multiple disciplines involved.
+          </p><p> <span class="timeline-date">2024:</span> 
+Currently, I am residing in Sicily since December 2023, I am embracing this new environment, immersing myself in a new language, and actively seeking fresh opportunities in Europe.
+          </p><p> <span class="timeline-date">2024:</span> 
+Recently, I supported operations at an <em>Engineering Services</em> start-up in the oil&gas division. In this role, I acted as <em>Field Engineer</em> responsible for leading a team of 12 electricians and instrumentalists at the “El Cerrito” gas plant, located at 215 km near <em>Rio Gallegos, Argentina</em>. 
+          </p><p> <span class="timeline-date">2024:</span> 
+Prior to Rio Gallegos, I resided in Rio Grande, Tierra del Fuego, an industrial city in the southernmost of Argentina, where I oversaw the maintenance of PCBA manufacturing machinery, SMT and THT, in EMS companies (Electronics Manufacturing Services) and Contract Electronics Manufacturers (CEM) for consumer electronics. Additionally, I held a seasonal position as Production and Engineering Supervisor. In previous years, I performed as Project Manager for NPI across various brands of smartphone manufacturing lines and investments. 
+          </p><p> <span class="timeline-date">2024:</span> 
+I also resided in Germany, as part of the UTN-DAAD scholarship program, collaborating with the Technological University of Argentina (UTN) in Paraná, where I participated in a lithography project and obtained my degree over a 6.5-year study program). 
+          </p><p> <span class="timeline-date">2024:</span> 
+From a very young age, I have been curious and skilled in informatics and science, developing self-taught skills in areas such as networking, programming and linux.
+          </p><p> <span class="timeline-date">2024:</span> 
+Living and working in different places has instilled in me a deep appreciation for diverse cultures and a strong adaptability, while my continuous development of skills has enabled me to extend beyond my immediate responsibilities, enhancing my responsiveness to business needs. This has allowed me to leverage my organizational abilities and deepen my understanding of industrialization processes.
+          </p> </div>
+      </section>
+
+      <section class="timeitem">
+          <div> 
+          <h1>Formative Experiences</h1>
+          <h2>Mar. 2005 – Oct. 2011 </h2>
+          <p>
+I always kept a proactive profile, even as a student, maintaining responsibility over my own learning curve, taking the initiative to do more of what was expected from me, acquiring new challenges with an optimistic look into the future.
+          </p>
+          </div>
+      </section>
+
+
+    <footer>
+      <nav>
+        <ul>
+            <li> <a href="/Index.html">Home</a> </li>
+            <li> <a href="/Cover.html">Cover Letter</a> </li>
+            <li> <a href="/Resume.html">Resume</a> </li>
+            <li> <a href="/linkedin.html">LinkedIn</a> <i class="fa-brands fa-linkedin-in"></i> </li>
+                  <li> <a href="/Proyecto1.html">Proyecto1</a> </li>
+                  <li> <a href="/Proyecto2.html">Proyecto2</a> </li>
+                  <li> <a href="/Proyecto3.html">Proyecto3</a> </li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
+
