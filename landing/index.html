@@ -55,19 +55,15 @@
     section.frases article > div { height: 100%; padding: 30px; border: 3px solid var(--color-odd-border); border-radius: 20px; }
 
     section.swiper { width:100%; height: 500px; background-color: transparent;  }
-    #FotoSwiper { width: 100%;  height: 100%;  }
-    #FotoSwiper .swiper-slide { border-radius: 20px; background-repeat: no-repeat; background-size: cover; background-position: left; }
-    #FotoSwiper .swiper-slide img { display: block; width: 100%; }
-    #FotoSwiper .swiper-slide:nth-child(1) { background-image: url("slide1.jpg"); }
-    #FotoSwiper .swiper-slide:nth-child(2) { background-image: url("slide2.jpg"); }
-    #FotoSwiper .swiper-slide:nth-child(3) { background-image: url("slide3.jpg"); }
-    #FotoSwiper .swiper-slide:nth-child(4) { background-image: url("fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: left; }
-    #FotoSwiper .swiper-slide { text-align: left; }
-    #FotoSwiper .swiper-slide h1 {  color: white; padding: 30px  0px  0px 40px; font-size: 41px; font-weight: bold; }
-    #FotoSwiper .swiper-slide h2 {  color: white; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
-    #FotoSwiper .swiper-slide p  {  color: white; padding: 10px  0px 30px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); }
-    #FotoSwiper .swiper-slide p  {  position: absolute; bottom: 0; text-align: justify; text-justify: inter-word; }
-    #FotoSwiper div.swiper-pagination { color: white; }
+    div.swiper { width: 100%;  height: 100%;  }
+    div.swiper-slide { background-repeat: no-repeat; background-size: cover; background-position: left; }
+    div.swiper-slide img { display: block; width: 100%; }
+    div.swiper-slide { text-align: left; }
+    div.swiper-slide h1 {  color: white; padding: 30px  0px  0px 40px; font-size: 41px; font-weight: bold; }
+    div.swiper-slide h2 {  color: white; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
+    div.swiper-slide p  {  color: white; padding: 10px  0px 30px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); }
+    div.swiper-slide p  {  position: absolute; bottom: 0; text-align: justify; text-justify: inter-word; }
+    div.swiper-pagination { color: white; }
 
     section.fotos p { font-size: 1.3rem;  }
     section.fotos { padding: 30px; display: grid; grid-template-columns: auto auto auto; gap: 30px; } 
@@ -124,24 +120,31 @@
 window.onload = function() {
     //  alert('hi!');
     // SWIPER - MIT Licensed Widget https://swiperjs.com/demos#default
-    
-    const swiper = new Swiper('#FotoSwiper', {
-      //direction: 'vertical', // optional parameter
-      // loop: true,
-      spaceBetween: 30,
-      effect: "fade",
-      pagination: {
-        el: '.swiper-pagination',
-        type: "fraction",
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-    });
+    // initialice multiple instances on the same page
+    const mySlider = document.querySelectorAll('div.swiper');
+    for( i=0; i< mySlider.length; i++ ) {
+      mySlider[i].classList.add('swiper-'+i);
+      
+        const swiper = new Swiper('.swiper-'+i, {
+          //direction: 'vertical', // optional parameter
+          // loop: true,
+          spaceBetween: 30,
+          effect: "fade",
+          pagination: {
+            el: '.swiper-pagination',
+            type: "fraction",
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          scrollbar: {
+            el: '.swiper-scrollbar',
+          },
+        });
+
+    }
+
 }
 </script>
 
@@ -166,7 +169,9 @@ aria-label="This site is hosted in GitHub" target="_blank">
         </ul>
       </nav>
     </header>
-
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
     <main>
       <section class="landing">
         <article>
@@ -182,6 +187,9 @@ I am a professional engineer with 10 years of solid experience, encompassing con
          -->
       </section>
       
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
       <section class="frases">
         <article>
           <div> <p>
@@ -205,13 +213,16 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
         </article>
       </section>
       
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
       <section class="swiper">
               <!-- Slider main container -->
-              <div class="swiper" id="FotoSwiper">
+              <div class="swiper">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                   <!-- Slides -->
-                  <div class="swiper-slide">
+                  <div class="swiper-slide" style='background-image: url("slide1.jpg");'>
                     <h1>Slide 1</h1>
                     <h2>Subtitle</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -222,7 +233,7 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
             ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
             tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide" style='background-image: url("slide2.jpg");'>
                     <h1>Slide 2</h1>
                     <h2>Subtitle</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -233,7 +244,7 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
             ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
             tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide" style='background-image: url("slide3.jpg");'>
                     <h1>Slide 3</h1>
                     <h2>Subtitle</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -244,7 +255,7 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
             ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
             tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
                   </div>
-                  <div class="swiper-slide">
+                  <div class="swiper-slide" style='background-image: url("fotocarnet.jpg");'>
                     <h1>Slide 4</h1>
                     <h2>Subtitle</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
@@ -269,6 +280,9 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
               </div>
       </section>
 
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
       <section class="fotos">
         <article>
           <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
@@ -284,6 +298,9 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
         </article>
       </section>
       
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
       <section class="timeline" id="timeline">
           <div class="timeline"> 
           <p> <span class="timeline-date">2024:</span> 
@@ -357,6 +374,9 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
 
 
 
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
       <section class="timeitem">
           <div> 
           <h1>Formative Experiences</h1>
@@ -384,9 +404,57 @@ I always kept a proactive profile, even as a student, maintaining responsibility
       </section>
 
 
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+      <section class="swiper">
+              <!-- Slider main container -->
+              <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="swiper-slide" style='background-image: url("slide1.jpg");'>
+                    <h1>Slide 1</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
+                  </div>
+                  <div class="swiper-slide" style='background-image: url("slide2.jpg");'>
+                    <h1>Slide 2</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
+                  </div>
+                  <div class="swiper-slide" style='background-image: url("slide3.jpg");'>
+                    <h1>Slide 3</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
+                  </div>
+                  <div class="swiper-slide" style='background-image: url("fotocarnet.jpg");'>
+                    <h1>Slide 4</h1>
+                    <h2>Subtitle</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
+                  </div>
+                  ...
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+              </div>
+      </section>
 
 
-
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
     <footer>
       <nav>
         <ul>
