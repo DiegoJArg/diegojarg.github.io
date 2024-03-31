@@ -89,15 +89,19 @@
         border-radius: 50%; background: white; /* box-shadow: 2px 2px 0px #bab5f8; */
     }
     .timeline-date { font-weight: bold; font-size: 18px; padding-right: 3px; }
+    div.timeline ul { margin-top: -1.3rem; padding-left: 20px; margin-left: 10px;  border-left: 1px solid var(--color-land-border); color: black; padding: 0px  0px 1.5rem 36px; font-size: 13px; line-height: 1.3; text-align: justify; list-style-type: circle;  }
+    div.timeline li:before { content: ""; margin-left: 0px; }
 
+    
     section.timeitem { padding: 0 5% 0 5%; }
     section.timeitem div { padding: 50px 0 50px 0; }
     section.timeitem div { border-left: 2px solid black; display: list-item; list-style-type: none;  }
-
     section.timeitem h1 {  color: black; padding:  0px  0px  0px 40px; font-size: 41px; font-weight: bold; }
     section.timeitem h2 {  color: black; padding:  5px  0px  0px 40px; font-size: 21px; font-weight: 100; }
-    section.timeitem p  {  color: black; padding: 10px  0px  0px 40px; font-size: 13px; line-height: 1.3; max-width: calc(100vh - 70px); text-align: justify; text-justify: inter-word; }
-
+    section.timeitem p  {  color: black; padding: 10px  0px  0px 40px; font-size: 13px; line-height: 1.3; text-align: justify; text-justify: inter-word; }
+    section.timeitem ul {  color: black; padding: 5px  0px  0px 32px; font-size: 10px; line-height: 1.3; text-align: justify; text-justify: inter-word; list-style-type: circle;  }
+    section.timeitem li:before { content: ""; margin-left: 8px; }
+    
     section.timeitem h2:before { 
     padding: 0 10px; left: calc(5% - 12px); content: ""; position: absolute;
        width: 25px; height: 25px; border-radius: 50%; background: black; 
@@ -161,8 +165,9 @@ window.onload = function() {
         <article>
           <div> 
             <h1>JACOBI, Diego Matias</h1>
-            <p>Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
- </p>
+            <p>
+I am a professional engineer with 10 years of solid experience, encompassing consumer electronics manufacturing, project management, and most recently, oil and gas instrumentation engineering.
+             </p>
           </div>
         </article>
         <!--
@@ -172,19 +177,23 @@ window.onload = function() {
       
       <section class="frases">
         <article>
-          <div> <p> Triunfa el que persevera, se esmera, persiste, el que sabe que no es fácil pero continúa insistiendo, si se cansa descansa y luego continúa. 
+          <div> <p>
+Triunfa el que persevera, se esmera, persiste, el que sabe que no es fácil pero continúa insistiendo, si se cansa descansa y luego continúa. 
           </p> </div>
         </article>
         <article>
-          <div> <p> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+          <div> <p> 
+The economic-political environment of Argentina offers competitive engineers with a challenging and always changing labour market to showcase their skills in their career paths. This context has shaped my diverse range of experiences and achievements, from which I have enjoyed learning across the multiple disciplines involved.
           </p> </div>
         </article>
         <article>
-          <div> <p> Solo un líder con visión levanta a otro líder que esta caído. Porque entiende que no es competencia, es unidad.
+          <div> <p>
+Solo un líder con visión levanta a otro líder que esta caído. Porque entiende que no es competencia, es unidad.
           </p> </div>
         </article>
         <article>
-          <div> <p> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+          <div> <p>
+Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
           </p> </div>
         </article>
       </section>
@@ -269,24 +278,77 @@ window.onload = function() {
       </section>
       
       <section class="timeline" id="timeline">
-          <div class="timeline"> <p> <span class="timeline-date">2024:</span> 
-I am a professional engineer with 10 years of solid experience, encompassing consumer electronics manufacturing, project management, and most recently, oil and gas instrumentation engineering.
-          </p><p> <span class="timeline-date">2024:</span> 
-The economic-political environment of Argentina offers competitive engineers with a challenging and always changing labour market to showcase their skills in their career paths. This context has shaped my diverse range of experiences and achievements, from which I have enjoyed learning across the multiple disciplines involved.
-          </p><p> <span class="timeline-date">2024:</span> 
-Currently, I am residing in Sicily since December 2023, I am embracing this new environment, immersing myself in a new language, and actively seeking fresh opportunities in Europe.
-          </p><p> <span class="timeline-date">2024:</span> 
-Recently, I supported operations at an <em>Engineering Services</em> start-up in the oil&gas division. In this role, I acted as <em>Field Engineer</em> responsible for leading a team of 12 electricians and instrumentalists at the “El Cerrito” gas plant, located at 215 km near <em>Rio Gallegos, Argentina</em>. 
-          </p><p> <span class="timeline-date">2024:</span> 
-Prior to Rio Gallegos, I resided in Rio Grande, Tierra del Fuego, an industrial city in the southernmost of Argentina, where I oversaw the maintenance of PCBA manufacturing machinery, SMT and THT, in EMS companies (Electronics Manufacturing Services) and Contract Electronics Manufacturers (CEM) for consumer electronics. Additionally, I held a seasonal position as Production and Engineering Supervisor. In previous years, I performed as Project Manager for NPI across various brands of smartphone manufacturing lines and investments. 
-          </p><p> <span class="timeline-date">2024:</span> 
-I also resided in Germany, as part of the UTN-DAAD scholarship program, collaborating with the Technological University of Argentina (UTN) in Paraná, where I participated in a lithography project and obtained my degree over a 6.5-year study program). 
-          </p><p> <span class="timeline-date">2024:</span> 
-From a very young age, I have been curious and skilled in informatics and science, developing self-taught skills in areas such as networking, programming and linux.
-          </p><p> <span class="timeline-date">2024:</span> 
-Living and working in different places has instilled in me a deep appreciation for diverse cultures and a strong adaptability, while my continuous development of skills has enabled me to extend beyond my immediate responsibilities, enhancing my responsiveness to business needs. This has allowed me to leverage my organizational abilities and deepen my understanding of industrialization processes.
+          <div class="timeline"> 
+          <p> <span class="timeline-date">2024:</span> 
+<br/> Moved to <em>Fiumedinisi, Messina, Italy</em>
+<br/> Became Italian citizen by descent and <b>gained European work rights</b>.
+<br/> <b>TODAY:</b> Open to work. Open for relocation. Searcing for new challenges.
+
+          </p><p> <span class="timeline-date">2023:</span> 
+<br/> Completed my studies in <b>Master in Data Science for Business</b>.
+<br/> Completed my genealogical research to start the process of Italian citizenship for descent.
+<br/> Started a new job in april in SADISA Engineering as <b>"E&I Engineer Supervisor "</b>.
+
+          </p><p> <span class="timeline-date">2022:</span> 
+<br/> Started studying <b>Master in Data Science for Business</b> in <em>UTEL Mexico</em> through distance education.
+
+          </p><p> <span class="timeline-date">2021:</span>
+<br/> Moved to <em>Rio Gallegos, Santa Cruz, Argentina</em> for my wife's work during the pandemics.
+
+          </p><p> <span class="timeline-date">2020:</span>
+<br/> Start of the covid-19 pandemics, a global event.
+
+          </p><p> <span class="timeline-date">2019:</span> 
+          </p><p> <span class="timeline-date">2018:</span> 
+<br/> Started a new job in march in Radiovictoria S.A. as <b>"SMT Manufacturing Supervisor | Process | Maintenance"</b>.
+
+          </p><p> <span class="timeline-date">2017:</span> 
+          </p><p> <span class="timeline-date">2016:</span> 
+          </p><p> <span class="timeline-date">2015:</span> 
+          </p><p> <span class="timeline-date">2014:</span> 
+<br/> Started a new job in august in BGH S.A. as <b>"Project Engineer | NPI | PMO | SMT"</b>.
+
+          </p><p> <span class="timeline-date">2013:</span> 
+<br/> Got married in Paraná.
+<br/> Started a new job in october in Motorola Mobility as <b>"Manufacturing Engineer | Product & Process Support"</b>.
+
+          </p><p> <span class="timeline-date">2012:</span> 
+<br/> 
+<br/> Started a job in march in DELPHI-Famar S.A. as <b>"Electronics Test Engineer | Automotive"</b>.
+
+          </p><p> <span class="timeline-date">2011:</span> 
+<br/> Completed my studies in <b>Electronic Engineering</b>.
+
+          </p><p> <span class="timeline-date">2009:</span> 
+<br/> Got an scholarship for <b>Balseiro Institut</b>.
+
+          </p><p> <span class="timeline-date">2009:</span> 
+<br/> Studied in <em>Ilmenau, Thüringen, Germany</em> for 6 months as part of the <b>UTN-DAAD scholarship program</b>.
+
+          </p><p> ...
+
+          </p><p> <span class="timeline-date">2005:</span> 
+<br/> Started studying <b>Electronic Engineering</b> in UTN-FRP, Argentina.
+
+          </p><p> <span class="timeline-date">2004:</span> 
+<br/> Completed technical school and became <b>Electronic Technician</b> in <em>Paraná</em>.
+
+          </p><p> ...
+
+          </p><p> <span class="timeline-date">1999:</span> 
+<br/> Started secondary school in Paraná at the age of 13.
+
+          </p><p> ...
+
+          </p><p> <span class="timeline-date">1987:</span> 
+<br/> At the age of 1, moved to <em>Paraná, Entre Ríos, Argentina</em>.
+
+          </p><p> <span class="timeline-date">1986:</span> 
+<br/> Born the 18th of may in <em>CABA, Argentina</em> (Autonomous City of Buenos Aires).
           </p> </div>
       </section>
+
+
 
       <section class="timeitem">
           <div> 
@@ -295,8 +357,27 @@ Living and working in different places has instilled in me a deep appreciation f
           <p>
 I always kept a proactive profile, even as a student, maintaining responsibility over my own learning curve, taking the initiative to do more of what was expected from me, acquiring new challenges with an optimistic look into the future.
           </p>
+          <ul>
+            <li>2011 | Graduated in Sep. as Electronic Engineer started at Feb 2005 (6.5 years) Plan 95 Adec
+            </li><li>2010 | Graduated as Intermediate “bachelor” grade of Universitary Electronic Technician (4 years)
+            </li><li>2010 | Balseiro Scholarship: Research on Angular and frequency dependence of standing spin waves in FePt films.
+            </li><li>2009 | DAAD Scholarship in Ilmenau Germany. Semester + Summer Class. Assistant on NanoLith project.
+            </li><li>2009 | 1st virtual congress of microcontrollers: Power variation with SPWM, V-USB driver for AVR.
+            </li><li>2007-11 | Others: Honours on Digital Techniques; 
+            </li><li>2007-11 | Others: Congresses HYFUSEN (Green Energy), EAMTA (Micro/Nanoelectronics), SASE (Embedded systems); 
+            </li><li>2007-11 | Others: Curse Cert IRAM on calibration, 
+            </li><li>2007-11 | Others: Teaching experience with Mathematica
+            </li><li>2007 | Remote Programmer at Vidalinux Distribution and GS Software in Python and PHP.
+            </li><li>2005 | Graduated as Electronic Technician. Secondary School.
+            </li>
+          </ul>
+
+
           </div>
       </section>
+
+
+
 
 
     <footer>
