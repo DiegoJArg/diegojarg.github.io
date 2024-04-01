@@ -42,6 +42,12 @@
     nav li:before { content: '| '; }
     nav li:first-child:before { content: ''; }
 
+    nav.techthanks { font-size: 0.8rem; background-color: white; color: gray;  }
+    nav.techthanks a { color: gray; text-decoration: none; }
+    nav.techthanks p { display: inline-block; }
+    nav.techthanks ul { display: inline-block; }
+    nav.techthanks li { font-size: inherit; }
+
 /*    section { height: 640px; } */
 
     section.landing { height: calc(640px - 100px); position: relative; }
@@ -65,15 +71,14 @@
 
 
 
-    section.frases2 { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 1rem; } 
-    section.frases2 div { font-size: 1.8rem;  }
-    section.frases2 article > div { background-color: white; color: black; }
-    section.frases2 article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
-
-    section.frases3 { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; } 
-    section.frases3 div { font-size: 1.5rem;  }
-    section.frases3 article > div {  background-color: white; color: black;  }
-    section.frases3 article > div {  padding: 2rem; border: 0.3rem solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
+    section.frases { background-color: var(--color-odd-bg);  }
+    section.frases { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 1rem; } 
+    section.frases div { font-size: 1.3rem;  }
+    section.frases p { font-size: 1.2rem; margin-top: 0.5rem;  }
+    section.frases article > div { background-color: white; color: black; }
+    section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
+    section.frases.frac2 { grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));  }
+    section.frases.frac3 { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));  }
 
 
     
@@ -114,7 +119,7 @@
 
     
     section.timeitem { padding: 0 5% 0 5%; background-color: transparent; }
-    section.timeitem div { padding: 5rem 0 5rem 0; }
+    section.timeitem div { padding: 5rem 0 1rem 0; }
     section.timeitem div { border-left: 0.2rem solid black; display: list-item; list-style-type: none;  }
     section.timeitem h1 {  color: black; padding:   0rem  0px  0px   4rem; font-size: 4rem; font-weight: bold; }
     section.timeitem h2 {  color: black; padding: 0.5rem  0px  0px   4rem; font-size: 2rem; font-weight: 100; }
@@ -338,7 +343,7 @@ This has honed my ability of rapid learning and made me less afraid of trying ne
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
-<section class="frases2">
+<section class="frases frac2">
 <article><div> Electronic Engineering </div></article>
 <article><div> Manufacturing Engineering </div></article>
 <article><div> Project Management </div></article>
@@ -421,24 +426,8 @@ This has honed my ability of rapid learning and made me less afraid of trying ne
               </div>
       </section>
 
-<!---------------------------------------------------------
------------------------------------------------------------
----------------------------------------------------------->
-      <section class="frases3">
-        <article>
-          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
-          </div>
-        </article>
-        <article>
-          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
-          </div>
-        </article>
-        <article>
-          <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
-          </div>
-        </article>
-      </section>
-      
+
+
 
 <!---------------------------------------------------------
 -----------------------------------------------------------
@@ -565,16 +554,100 @@ I always kept a proactive profile, even as a student, maintaining responsibility
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
+      <section class="timeitem">
+          <div> 
+          <h1>Psychometry</h1>
+          <h2>&nbsp;</h2>
+
+<p>A psychometric test is an assessment designed to measure cognitive ability, personality or work behaviour, to indicate the potential of a job candidate to excel in a specific position or career. Psychometric testing takes various forms (eg numerical, mechanical, logical or verbal reasoning).</p>
+<p>A psychometric test may be administered in person at an assessment centre. The tests are intended to streamline the recruitment process and reveal top applicants efficiently.</p>
+<p>See my <a href="https://secure.plum.io/en/p/b9dz0HedOToSdGe_smdhTg" target="_blank">Plum profile</a>. (A psycometric tester platform)</p>
+          </div>
+      </section>
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+<section class="frases frac3">
+<article>
+<div>
+<h1>Conflict Resolution</h1>
+<p/>Exceptional at being considerate and aiming to achieve mutually agreeable solutions.
+<p/>Strong at staying calm and remaining impartial in the midst of conflict.
+<p/>Very good at analyzing information to find the best solution.
+<p/>Good at encouraging and building mutual respect, and displaying sensitivity.
+<p/>Very capable of identifying effective strategies to resolve conflict and managing difficult interpersonal situations.
+</div></article>
+<article><div> 
+<h1>Persuasion</h1>
+<p/>Exceptional at being tactful and working to find a mutually agreeable solution.
+<p/>Very good at understanding peoples' motivations and feelings, and knowing how to motivate others to change.
+</div></article>
+<article><div>
+<h1>Innovation</h1>
+<p/>Very capable of being receptive to different ideas and flexible to changing demands.
+<p/>Strong at working with abstract ideas and developing unconventional solutions.
+<p/>Very good at understanding complicated problems, generating solutions, and evaluating options.
+</div></article>
+</section>
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+<section class="frases frac2">
+<article>
+<div>
+<h1>As a Person</h1>
+<p/>Likely to be curious, analytical, reflective, imaginative, and creative
+<p/>Likely to be calm, steady, even-tempered, and composed
+<p/>Modest, humble, pleasant, considerate, generous, and cooperative
+<p/>Likely to be receptive, adaptive, flexible, unconventional, and reflective
+<p/>Good at analyzing and answering complex problems
+<p/>Good at navigating challenging interpersonal situations and noticing subtle social cues
+<p/>Likely to be introverted and reserved
+</div></article>
+<article><div> 
+<h1>Professionally</h1>
+<p/>A good fit for roles that require making decisions and producing work without error under stress or demanding timelines.
+<p/>A good fit for roles with clear and attainable goals.
+<p/>A good fit for roles that benefit from analyzing information to choose the best solution.
+<p/>A good fit for organizations and roles that are growing and changing quickly.
+<p/>A good fit for roles that benefit from identifying and understanding the motivations and feelings of others.
+<p/>A good fit for roles that benefit from continuous learning and imagining new ways of doing things.
+<p/>A very good fit for roles that require being friendly and courteous.
+<p/>A good fit for organizations and roles that appreciate good listeners that don’t waste time on small talk.
+</div></article>
+</section>
+
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
     <footer>
       <nav>
         <ul>
             <li> <a href="/Index.html">Home</a> </li>
             <li> <a href="/Cover.html">Cover Letter</a> </li>
             <li> <a href="/Resume.html">Resume</a> </li>
-            <li> <a href="/linkedin.html">LinkedIn</a> <i class="fa-brands fa-linkedin-in"></i> </li>
-                  <li> <a href="/Proyecto1.html">Proyecto1</a> </li>
-                  <li> <a href="/Proyecto2.html">Proyecto2</a> </li>
-                  <li> <a href="/Proyecto3.html">Proyecto3</a> </li>
+            <li> <a href="/linkedin.html">LinkedIn</a> </i> </li>
+            <li> <a href="/Proyecto1.html">Proyecto1</a> </li>
+            <li> <a href="/Proyecto2.html">Proyecto2</a> </li>
+            <li> <a href="/Proyecto3.html">Proyecto3</a> </li>
+        </ul>
+      </nav>
+      
+      <nav class="techthanks">
+      <p>The creation of this site was made possible by the following technologies:</p>
+        <ul>
+            <li> HTML </li>
+            <li> Javascript </li>
+            <li> CSS </li>
+            <li> <a target="_blank" href="/a.html">Git & GitHub & GitHub Desktop</a> </li>
+            <li> <a target="_blank" href="https://swiperjs.com/">Swiper</a> </li>
+            <li> <a target="_blank" href="https://www.pspad.com">PSPad</a> </li>
+            <li> <a target="_blank" href="/a.html">Opera</a> </li>
+            <li> <a target="_blank" href="/a.html">LinkedIn</a> </li>
+            <li> <a target="_blank" href="/a.html">Plum</a> </li>
         </ul>
       </nav>
     </footer>
