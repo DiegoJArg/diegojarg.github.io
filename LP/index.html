@@ -65,14 +65,21 @@
 
 
 
-    section.frases { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 1rem; } 
-    section.frases div { font-size: 1.8rem;  }
-    section.frases article > div { background-color: white; color: black; }
-    section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
+    section.frases2 { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 1rem; } 
+    section.frases2 div { font-size: 1.8rem;  }
+    section.frases2 article > div { background-color: white; color: black; }
+    section.frases2 article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
+
+    section.frases3 { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; } 
+    section.frases3 div { font-size: 1.5rem;  }
+    section.frases3 article > div {  background-color: white; color: black;  }
+    section.frases3 article > div {  padding: 2rem; border: 0.3rem solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
 
 
+    
+    section.swiper { width:100%; height: 90vh; background-color: transparent;  }
+    @media only screen and (max-width: 768px)  { section.swiper { height: 60vh; }  }
 
-    section.swiper { width:100%; height: max(60vh,550px); background-color: transparent;  }
     div.swiper { width: 100%;  height: 100%;  }
     div.swiper-slide { background-repeat: no-repeat; background-size: cover; background-position: center; }
     div.swiper-slide img { display: block; width: 100%; }
@@ -84,15 +91,11 @@
     div.swiper-pagination { color: white; }
 
 
-    section.fotos { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1rem; } 
-    section.fotos div { font-size: 1.5rem;  }
-    section.fotos article {  }
-    section.fotos article > div {  padding: 2rem; border: 0.3rem solid var(--color-odd-border); border-radius: 20px;  color: var(--color-odd-text);  }
-
     section.timeline { padding: 8vw; } 
     section.timeline article { }
     section.timeline article > div {  height: 100%; padding: 0; border: 0.3rem solid var(--color-even-border); border-radius: 20px;   }
 
+    section.timeline { background-color: var(--color-odd-bg); }
     section.timeline div.timeline p span.timeline-date { font-size: 2rem;  }
     section.timeline div.timeline p { font-size: 1.2rem;  }
     section.timeline div.timeline p > em { font-size: 1.2rem; font-weight: normal; color: maroon; font-style: normal; }
@@ -110,12 +113,12 @@
     section.timeline div.timeline li:before { content: ""; margin-left: 0px; }
 
     
-    section.timeitem { padding: 0 5% 0 5%; }
+    section.timeitem { padding: 0 5% 0 5%; background-color: transparent; }
     section.timeitem div { padding: 5rem 0 5rem 0; }
     section.timeitem div { border-left: 0.2rem solid black; display: list-item; list-style-type: none;  }
     section.timeitem h1 {  color: black; padding:   0rem  0px  0px   4rem; font-size: 4rem; font-weight: bold; }
     section.timeitem h2 {  color: black; padding: 0.5rem  0px  0px   4rem; font-size: 2rem; font-weight: 100; }
-    section.timeitem p  {  color: black; padding: 0.1rem  0px  0px   4rem; font-size: 1.3rem; line-height: 1.3; text-align: justify; }
+    section.timeitem div p  {  color: black; padding: 0.1rem  0px  0px   4rem; font-size: 1.3rem; line-height: 1.3; text-align: justify; margin-bottom: 0.8rem; }
     section.timeitem ul {  color: black; padding: 0.5rem  0px  0px 3.2rem; font-size: 1rem; line-height: 1.2;  list-style-type: circle;  }
     section.timeitem ul li {  margin-bottom: 0.3rem; padding-left: 0.8rem; }
     section.timeitem li:before { content: "";  }
@@ -131,6 +134,8 @@
     }*/
 
     </STYLE> 
+
+
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -165,10 +170,14 @@ window.onload = function() {
           },
         });
 
+
     }
 
 }
 </script>
+
+
+
 
   </head>
   <body>
@@ -200,7 +209,9 @@ aria-label="This site is hosted in GitHub" target="_blank">
           <div> 
             <h1>JACOBI, Diego Matias</h1>
             <p>
-I am a professional engineer with 10 years of solid experience, encompassing consumer electronics manufacturing, project management, and most recently, oil and gas instrumentation engineering.
+Welcome to my pseudo-professional almost-informal portfolio landing page.
+            </p><p>
+<b style='color: red;'>This website is under construction.</b>
              </p>
           </div>
         </article>
@@ -209,6 +220,73 @@ I am a professional engineer with 10 years of solid experience, encompassing con
          -->
       </section>
 
+
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+      <section class="timeitem">
+          <div> 
+          <h1>README</h1>
+          <h2>April 1, 2024 </h2>
+          <p>
+<b style='color: red;'>This website is under construction.</b>
+          </p><p>
+It's goal is not yet clearly defined as it should be and will probably remain this way for a while.
+          </p><p>
+It started as a weekend project of a personal public portfolio website to showcase some HTML, Javascript, and CSS competencies.
+However, programming is not my main profession but rather a hobby I indulge in from time to time.
+          </p><p>
+At the time of writing, I believe that I will just include enough content that isn't usually found in a resume, more related to my hobbist side, while maintaining a corporate landing-page look&feel.
+          </p><p>
+Good look reading!
+          </p>
+          </div>
+      </section>
+
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+      <section class="timeitem">
+          <div> 
+          <h1>Vision, Mission, and Values</h1>
+          <h2>&nbsp;</h2>
+
+<!--
+A vision statement: 
+It is a broad and inspirational/aspirational goal statement for internal company, that a company can work towards, use intended to engender support from stakeholders.
+Inspires employees and provides guidance for stakeholders.
+Describes what the organization will become in the future. 
+
+A mission statement: 
+Is a clear and concise summary of why of a company exists for internal and external use.
+Provides the primary reason why clients or customers choose the company over competitors.
+Defines how the organization differentiates itself from other organizations in its industry. 
+It is more specific than the vision statement and is intended to show how stakeholders’ needs will be satisfied.
+
+A value statement: 
+Is an explicit list of the values for which a company stands and for external use. 
+These are in clear correlation to the values of its customers or clients.
+The values statement defines how people in the organization should behave. 
+-->
+          <p>
+<b>My VISION</b>
+<br/>
+Work in progress.
+          </p><p>
+<b>My MISSION</b>
+<br/>
+Work in progress.
+          </p><p>
+<b>My VALUEs</b>
+<br/>
+Work in progress.
+          </p>
+          </div>
+      </section>
+
+      
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
@@ -218,6 +296,8 @@ I am a professional engineer with 10 years of solid experience, encompassing con
           <div> 
             <h1>COVER LETTER</h1>
             <p>
+I am a professional engineer with 10 years of solid experience, encompassing consumer electronics manufacturing, project management, and most recently, oil and gas instrumentation engineering.
+</p><p>
 The economic-political environment of Argentina offers competitive engineers with a challenging and always changing labour market to showcase their skills in their career paths. This context has shaped my diverse range of experiences and achievements, from which I have enjoyed learning across the multiple disciplines involved.
 </p><p>
 Currently, I am residing in Sicily since December 2023, I am embracing this new environment, immersing myself in a new language, and actively seeking fresh opportunities in Europe.
@@ -242,25 +322,51 @@ Living and working in different places has instilled in me a deep appreciation f
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
-      <section class="frases">
+      <section class="timeitem">
+          <div> 
+          <h1>Fields of interests</h1>
+          <h2>&nbsp;</h2>
+<p>Like most people, I am interested in more than one topic.</p>
+<p>I am project-driven person. All of my hobbies and interests are just small projects in the larger pursuits of learning and problem solving.</p>
+<p>I have been a "beginner" many times, with deep commitment to each topic that captures my attention.
+This has honed my ability of rapid learning and made me less afraid of trying new things or stepping out of the comfort zone.</p>
+<p>I always believed that <i>multidisciplinarity</i> and <i>adaptability</i> are key skills that companies should seek.</p>
+<p>The world economy is changing rapidly, and organizations needs these skills in their staff so they can pivot in order to meet the new demands of the market.</p>
+          </div>
+      </section>
+      
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+      <section class="frases2">
         <article>
           <div>
-Triunfa el que persevera, se esmera, persiste, el que sabe que no es fácil pero continúa insistiendo, si se cansa descansa y luego continúa. 
+Electronic Engineering
           </div>
         </article>
         <article>
           <div>
-The economic-political environment of Argentina offers competitive engineers with a challenging and always changing labour market to showcase their skills in their career paths. This context has shaped my diverse range of experiences and achievements, from which I have enjoyed learning across the multiple disciplines involved.
+E&I Engineering
           </div>
         </article>
         <article>
           <div>
-Solo un líder con visión levanta a otro líder que esta caído. Porque entiende que no es competencia, es unidad.
+Manufacturing Engineering
           </div>
         </article>
         <article>
           <div>
-Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
+Project Management
+          </div>
+        </article>
+        <article>
+          <div>
+Software Programming
+          </div>
+        </article>
+        <article>
+          <div>
+Other Hobbies
           </div>
         </article>
       </section>
@@ -274,60 +380,67 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                   <!-- Slides -->
-                  <div class="swiper-slide" style='background-image: url("slide1.jpg");'>
-                    <h1>Slide 1</h1>
-                    <h2>Subtitle</h2>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_hobby1.jpg");'>
+                    <h1>Slide Hobby</h1><h2>Foto1</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
                   </div>
-                  <div class="swiper-slide" style='background-image: url("slide2.jpg");'>
-                    <h1>Slide 2</h1>
-                    <h2>Subtitle</h2>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_hobby2.jpg");'>
+                    <h1>Slide Hobby</h1><h2>Foto1</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+            dictum mattis velit, sit amet faucibus felis iaculis nec.</p>
                   </div>
-                  <div class="swiper-slide" style='background-image: url("slide3.jpg");'>
-                    <h1>Slide 3</h1>
-                    <h2>Subtitle</h2>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_hobby3.jpg");'>
+                    <h1>Slide Hobby</h1><h2>Foto1</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
                   </div>
-                  <div class="swiper-slide" style='background-image: url("fotocarnet.jpg");'>
-                    <h1>Slide 4</h1>
-                    <h2>Subtitle</h2>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_fab1.jpg");'>
+                    <h1>Slide Manufacturing Engineering</h1><h2>Foto1</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-            laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-            Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-            Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-            ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-            tincidunt ut libero. Aenean feugiat non eros quis feugiat.</p>
+            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
                   </div>
-                  ...
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_fab2.jpg");'>
+                    <h1>Slide Manufacturing Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_fab3.jpg");'>
+                    <h1>Slide Manufacturing Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_fab4.jpg");'>
+                    <h1>Slide Manufacturing Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_fab5.jpg");'>
+                    <h1>Slide Manufacturing Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_inst1.jpg");'>
+                    <h1>Slide E&I Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_inst2.jpg");'>
+                    <h1>Slide E&I Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_inst3.jpg");'>
+                    <h1>Slide E&I Engineering</h1><h2>Foto1</h2>
+                  </div>
+                  <div class="swiper-slide" 
+                  style='background-image: url("photos/slide_inst4.jpg");'>
+                    <h1>Slide E&I Engineering</h1><h2>Foto1</h2>
+                  </div>
 
-                <!-- If we need navigation buttons -->
+                </div>
+                <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-
-                <!-- If we need scrollbar -->
                 <div class="swiper-scrollbar"></div>
               </div>
       </section>
@@ -335,7 +448,7 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
-      <section class="fotos">
+      <section class="frases3">
         <article>
           <div> Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias gráficas, gráficas y editoriales para previsualizar diseños y maquetas visuales.
           </div>
@@ -350,6 +463,19 @@ Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las in
         </article>
       </section>
       
+
+<!---------------------------------------------------------
+-----------------------------------------------------------
+---------------------------------------------------------->
+      <section class="timeitem">
+          <div> 
+          <h1>Timeline</h1>
+          <h2>&nbsp;</h2>
+<p>A year-by-year timeline of publishable events that shaped my existence.</p>
+          </div>
+      </section>
+
+
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
@@ -455,53 +581,6 @@ I always kept a proactive profile, even as a student, maintaining responsibility
           </div>
       </section>
 
-
-<!---------------------------------------------------------
------------------------------------------------------------
----------------------------------------------------------->
-      <section class="swiper">
-              <!-- Slider main container -->
-              <div class="swiper">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                  <!-- Slides -->
-                  <div class="swiper-slide" style='background-image: url("slide1.jpg");'>
-                    <h1>Slide 1</h1>
-                    <h2>Subtitle</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
-                  </div>
-                  <div class="swiper-slide" style='background-image: url("slide2.jpg");'>
-                    <h1>Slide 2</h1>
-                    <h2>Subtitle</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
-                  </div>
-                  <div class="swiper-slide" style='background-image: url("slide3.jpg");'>
-                    <h1>Slide 3</h1>
-                    <h2>Subtitle</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
-                  </div>
-                  <div class="swiper-slide" style='background-image: url("fotocarnet.jpg");'>
-                    <h1>Slide 4</h1>
-                    <h2>Subtitle</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            dictum mattis velit, sit amet faucibus felis iaculis nec. </p>
-                  </div>
-                  ...
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-
-                <!-- If we need scrollbar -->
-                <div class="swiper-scrollbar"></div>
-              </div>
-      </section>
 
 
 <!---------------------------------------------------------
