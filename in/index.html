@@ -80,8 +80,13 @@
     section.frases.frac2 { grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));  }
     section.frases.frac3 { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));  }
 
-    i.brand { font-family: "Font Awesome 6 Brands"; color: inherit; font-weight: 400; font-style: normal; display: inline-block; line-height: 1; }
+    /* Using only Font Awesome 6 Brands and anything else, with compressed .woff2 */
+    /* https://fontawesome.com/search?o=r&f=brands */
+    @font-face { font-family: 'Font_for_Brands'; src: url('fonts/fa-brands-400.woff2'); } 
+    i.brand { font-family: "Font_for_Brands"; color: inherit; font-weight: 400; font-style: normal; display: inline-block; line-height: 1; }
     i.linkedin:before{ content: "\f0e1"; }
+    i.whatsapp:before{ content: "\f232"; }
+    i.github:before{ content: "\f092"; }
     
     section.swiper { width:100%; height: 90vh; background-color: transparent;  }
     @media only screen and (max-width: 768px)  { section.swiper { height: 60vh; }  }
@@ -194,9 +199,11 @@ aria-label="This site is hosted in GitHub" target="_blank">
       <nav>
         <ul>
             <li> <a href="/in/index.html">Home Landing Page</a> </li>
-            <li> <a target="_blank" 
+            <li> <i class="brand github"></i>
+            <a target="_blank" 
             href="https://github.com/DiegoJArg">GitHub</a> </li>
-            <li> <i class="brand linkedin"></i><a target="_blank" 
+            <li> <i class="brand linkedin"></i>
+            <a target="_blank" 
             href="https://www.linkedin.com/in/jacobidiego/">LinkedIn</a> </li>
             <li> <a target="_blank" 
             href="https://profile.indeed.com/p/diegoj-ldv1jys">Indeed</a> </li>
