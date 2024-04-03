@@ -1,0 +1,9 @@
+Error: ...13\_myGitHub\diegojarg.github.io\in\data/core\config.lua:6: cannot get undefined variable: SCALE
+stack traceback:
+	...13\_myGitHub\diegojarg.github.io\in\data/core\config.lua:6: in main chunk
+	[C]: in function 'require'
+	...te13\_myGitHub\diegojarg.github.io\in\data/core/init.lua:4: in main chunk
+	[C]: in function 'require'
+	[string "local core..."]:12: in function <[string "local core..."]:6>
+	[C]: in function 'xpcall'
+	[string "local core..."]:6: in main chunk

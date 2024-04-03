@@ -43,30 +43,21 @@ base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g.
   href="https://cdn.jsdelivr.net/gh/chriskempson/base16-html-previews@master/css/base16-irblack.css"
 />
 
-<!--
 <script>
 
 var r = document.querySelector(':root');
 //var rs = getComputedStyle(r);
-r.style.setProperty('--color-bg-default', 'white');    //-- base00 - Default Background
-r.style.setProperty('--color-border-default', 'black'); 
-r.style.setProperty('--color-text-default', 'black');    
-
-r.style.setProperty('--color-bg-linkbar', 'black');    //-- base01 - Lighter Background (Used for status bars, line number and folding marks)
-r.style.setProperty('--color-border-linkbar', 'steelblue'); // base04 - Dark Foreground (Used for status bars)
-r.style.setProperty('--color-text-linkbar', 'white');  
-
-r.style.setProperty('--color-bg-bilds', rgb(91, 155, 213)); // base02 - Selection Background
-r.style.setProperty('--color-border-bilds', rgb(160, 181, 230)); 
-r.style.setProperty('--color-text-bilds', 'black');    
-
-r.style.setProperty('--color-text-swiper', 'white');    
-r.style.setProperty('--color-text-location', 'white');    
-r.style.setProperty('--color-text-jobname', 'white');    
-r.style.setProperty('--color-text-education', 'white');    
+r.style.setProperty('--color-land-bg', 'black');
+r.style.setProperty('--color-land-border', 'steelblue'); 
+r.style.setProperty('--color-land-text', 'steelblue');  
+r.style.setProperty('--color-odd-bg', rgb(91, 155, 213));   
+r.style.setProperty('--color-odd-border', rgb(160, 181, 230)); 
+r.style.setProperty('--color-odd-text', 'black');    
+r.style.setProperty('--color-even-bg', 'white');  
+r.style.setProperty('--color-even-border', rgb(160, 181, 230));
+r.style.setProperty('--color-even-text', 'black'); 
 
 </script>
--->
 
 <!----------------------------------------------
 --
@@ -76,23 +67,15 @@ r.style.setProperty('--color-text-education', 'white');
     <STYLE>
 
     :root {
-      --color-bg-default     : white;
-      --color-border-default : black;
-      --color-text-default   : black;
-
-      --color-bg-linkbar     : black;
-      --color-border-linkbar : steelblue;
-      --color-text-linkbar   : white;
-
-      --color-bg-bilds       : rgb(91, 155, 213);
-      --color-border-bilds   : rgb(160, 181, 230);
-      --color-text-bilds     : black;
-
-      --color-text-swiper    : white;
-      --color-text-location  : maroon;
-      --color-text-jobname   : black;
-      --color-text-education : mediumblue;
-
+      --color-land-bg     : black;
+      --color-land-border : steelblue; /* rgb(160, 181, 230); */
+      --color-land-text   : white;
+      --color-odd-bg      : rgb(91, 155, 213);
+      --color-odd-border  : rgb(160, 181, 230);
+      --color-odd-text    : black;
+      --color-even-bg     : white;
+      --color-even-border : rgb(160, 181, 230);
+      --color-even-text   : black;
       --font-family-primary: "Manrope", sans-serif;
     }
 
@@ -102,12 +85,12 @@ r.style.setProperty('--color-text-education', 'white');
     @media only screen and (max-width: 768px)  { html{ font-size: 10px; }  }
 
     *, ::after, ::before { margin: 0px; padding: 0px; box-sizing: border-box; }
-    body { width: auto; background-color: var(--color-bg-default); font-family: var(--font-family-primary); }
+    body { width: auto; background-color: white; font-family: var(--font-family-primary); }
     ul { list-style-type: none; padding: 0; }
 
-    header, footer { background-color: var(--color-bg-linkbar);; text-align: left; color: var(--color-text-linkbar); }
-    header > nav { border-bottom: 0.3rem solid var(--color-bg-bilds); }
-    footer > nav { border-top: 0.3rem solid var(--color-bg-bilds); }
+    header, footer { background-color: black; text-align: left; color: var(--color-land-text); }
+    header > nav { border-bottom: 0.3rem solid var(--color-land-border); }
+    footer > nav { border-top: 0.3rem solid var(--color-land-border); }
     nav { padding: 0.5rem; text-align: center; }
     nav a { color: white; text-decoration: none; }
     nav li { display: inline-block; vertical-align: middle; text-align: center; }
@@ -125,29 +108,33 @@ r.style.setProperty('--color-text-education', 'white');
 
     section.landing { height: calc(640px - 100px); position: relative; }
     section.landing { background-image: url("photos/fotocarnet.jpg"); background-repeat: no-repeat; background-size: cover; background-position: center; }
-    section.landing {  background-color: var(--color-bg-linkbar); color: var(--color-text-linkbar);  }
+    section.landing {  background-color: var(--color-land-bg); color: var(--color-land-text);  }
     section.landing article { width:100%; position: absolute; bottom: 2rem; padding: 0 10% 0 10% ;   }
-    section.landing article > div { width: 100%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-border-linkbar); border-radius: 20px; background: rgba(0,0,0,0.5);  }
+    section.landing article > div { width: 100%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
     section.landing h1 { font-size: 1.8rem; }
     section.landing p { font-size: 1.3rem; padding-top: 1rem;  }
 
 
-    section.coverletter { background-color: var(--color-bg-linkbar); color: var(--color-text-linkbar);  }
+    section.coverletter { background-color: var(--color-land-bg); color: var(--color-land-text);  }
     section.coverletter article { padding: 3rem 0 3rem 5% ;   }
-    section.coverletter article > div { width: 95%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-border-linkbar); border-radius: 20px; background: rgba(0,0,0,0.5);  }
+    section.coverletter article > div { width: 95%; height: auto; padding: 3rem; border: 0.3rem solid var(--color-land-border); border-radius: 20px; background: rgba(0,0,0,0.5);  }
     section.coverletter h1 { font-size: 1.8rem; }
     section.coverletter p { font-size: 1.3rem; padding-top: 1rem;  }
 
 
-    section.frases { background-color: var(--color-bg-bilds);  }
+    section:nth-child(2n+2) { background-color: var(--color-even-bg); color: var(--color-even-text); }
+    section:nth-child(2n+3) { background-color: var(--color-odd-bg); color: var(--color-odd-text); border-color: var(--color-odd-border); }
+
+
+
+    section.frases { background-color: var(--color-odd-bg);  }
     section.frases { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 1rem; }
     section.frases div { font-size: 1.3rem;  }
     section.frases p { font-size: 1.2rem; margin-top: 0.5rem;  }
-    section.frases article > div { background-color: var(--color-bg-default); color: black; }
-    section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-border-bilds); border-radius: 20px; }
+    section.frases article > div { background-color: white; color: black; }
+    section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-odd-border); border-radius: 20px; }
     section.frases.frac2 { grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));  }
     section.frases.frac3 { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));  }
-
 
     /* Using only Font Awesome 6 Brands and anything else, with compressed .woff2 */
     /* https://fontawesome.com/search?o=r&f=brands */
@@ -159,6 +146,7 @@ r.style.setProperty('--color-text-education', 'white');
     i.whatsapp:before{ content: "\f232"; }
 
 
+
     section.swiper { width:100%; height: 90vh; background-color: transparent;  }
     @media only screen and (max-width: 768px)  { section.swiper { height: 60vh; }  }
 
@@ -166,42 +154,42 @@ r.style.setProperty('--color-text-education', 'white');
     div.swiper-slide { background-repeat: no-repeat; background-size: cover; background-position: center; }
     div.swiper-slide img { display: block; width: 100%; }
     div.swiper-slide { text-align: left; }
-    div.swiper-slide h1 {  color: var(--color-text-swiper); padding:   3rem  3rem 0rem 4rem; font-size: 2.5rem; font-weight: bold; }
-    div.swiper-slide h2 {  color: var(--color-text-swiper); padding: 0.5rem  3rem 0rem 4rem; font-size: 1.6rem; font-weight: 100; }
-    div.swiper-slide p  {  color: var(--color-text-swiper); padding:   1rem  3rem 3rem 4rem; font-size: 1rem; line-height: 1.3; max-width: calc(800vw); }
+    div.swiper-slide h1 {  color: white; padding:   3rem  3rem 0rem 4rem; font-size: 2.5rem; font-weight: bold; }
+    div.swiper-slide h2 {  color: white; padding: 0.5rem  3rem 0rem 4rem; font-size: 1.6rem; font-weight: 100; }
+    div.swiper-slide p  {  color: white; padding:   1rem  3rem 3rem 4rem; font-size: 1rem; line-height: 1.3; max-width: calc(800vw); }
     div.swiper-slide p  {  position: absolute; bottom: 0; text-align: justify; text-justify: inter-word; }
-    div.swiper-pagination { color: var(--color-text-swiper); }
+    div.swiper-pagination { color: white; }
 
 
     section.timeline { padding: 8vw; }
     section.timeline article { }
-    section.timeline article > div {  height: 100%; padding: 0; border: 0.3rem solid var(--color-border-bilds); border-radius: 20px;   }
+    section.timeline article > div {  height: 100%; padding: 0; border: 0.3rem solid var(--color-even-border); border-radius: 20px;   }
 
-    section.timeline { background-color: var(--color-bg-bilds); }
+    section.timeline { background-color: var(--color-odd-bg); }
     section.timeline div.timeline p span.timeline-date { font-size: 2rem;  }
     section.timeline div.timeline p { font-size: 1.2rem;  }
-    section.timeline div.timeline p > em { font-size: 1.2rem; font-weight: normal; color: var(--color-text-location); font-style: normal; }
-    section.timeline div.timeline p > b { font-size: 1.2rem; font-weight: bold; color: var(--color-text-jobname); font-style: normal; }
-    section.timeline div.timeline p > i { font-size: 1.2rem; font-weight: normal; color: var(--color-text-education); font-style: normal; }
+    section.timeline div.timeline p > em { font-size: 1.2rem; font-weight: normal; color: maroon; font-style: normal; }
+    section.timeline div.timeline p > b { font-size: 1.2rem; font-weight: bold; color: black; font-style: normal; }
+    section.timeline div.timeline p > i { font-size: 1.2rem; font-weight: normal; color: mediumblue; font-style: normal; }
     section.timeline div.timeline p { padding-bottom: 1.5rem; padding-left: 3rem; margin-left: 1rem; position: relative; }
-    section.timeline div.timeline p { border-left: 0.1rem solid var(--color-border-bilds); display: list-item; list-style-type: none; }
+    section.timeline div.timeline p { border-left: 0.1rem solid var(--color-land-border); display: list-item; list-style-type: none; }
     section.timeline div.timeline p:last-child { border: 0; padding-bottom: 0; }
     section.timeline div.timeline p:before { content: '';
         width: 2rem; height: 2rem; position: absolute; left: -1rem; top: 0rem;
-        border-radius: 50%; background: var(--color-bg-default); /* box-shadow: 2px 2px 0px #bab5f8; */
+        border-radius: 50%; background: white; /* box-shadow: 2px 2px 0px #bab5f8; */
     }
     .timeline-date { font-weight: bold; font-size: 18px; padding-right: 3px; }
-    section.timeline div.timeline ul { margin-top: -1.3rem; padding-left: 20px; margin-left: 10px;  border-left: 1px solid var(--color-border-bilds); color: black; padding: 0px  0px 1.5rem 36px; font-size: 13px; line-height: 1.3; text-align: justify; list-style-type: circle;  }
+    section.timeline div.timeline ul { margin-top: -1.3rem; padding-left: 20px; margin-left: 10px;  border-left: 1px solid var(--color-land-border); color: black; padding: 0px  0px 1.5rem 36px; font-size: 13px; line-height: 1.3; text-align: justify; list-style-type: circle;  }
     section.timeline div.timeline li:before { content: ""; margin-left: 0px; }
 
 
     section.timeitem { padding: 0 5% 0 5%; background-color: transparent; }
     section.timeitem div { padding: 5rem 0 1rem 0; }
-    section.timeitem div { border-left: 0.2rem solid var(--color-border-default); display: list-item; list-style-type: none;  }
-    section.timeitem h1 {  color: var(--color-text-default); padding:   0rem  1rem  0px   4rem; font-size: 4rem; font-weight: bold; }
-    section.timeitem h2 {  color: var(--color-text-default); padding: 0.5rem  1rem  0px   4rem; font-size: 2rem; font-weight: 100; }
-    section.timeitem div p  {  color: var(--color-text-default); padding: 0.1rem  4rem  0px   4rem; font-size: 1.3rem; line-height: 1.3; text-align: justify; margin-bottom: 0.8rem; }
-    section.timeitem ul {  color: var(--color-text-default); padding: 0.5rem  3rem  0px 3.2rem; font-size: 1rem; line-height: 1.2;  list-style-type: circle;  }
+    section.timeitem div { border-left: 0.2rem solid black; display: list-item; list-style-type: none;  }
+    section.timeitem h1 {  color: black; padding:   0rem  1rem  0px   4rem; font-size: 4rem; font-weight: bold; }
+    section.timeitem h2 {  color: black; padding: 0.5rem  1rem  0px   4rem; font-size: 2rem; font-weight: 100; }
+    section.timeitem div p  {  color: black; padding: 0.1rem  4rem  0px   4rem; font-size: 1.3rem; line-height: 1.3; text-align: justify; margin-bottom: 0.8rem; }
+    section.timeitem ul {  color: black; padding: 0.5rem  3rem  0px 3.2rem; font-size: 1rem; line-height: 1.2;  list-style-type: circle;  }
     section.timeitem ul li {  margin-bottom: 0.3rem; padding-left: 0.8rem; }
     section.timeitem li:before { content: "";  }
 
