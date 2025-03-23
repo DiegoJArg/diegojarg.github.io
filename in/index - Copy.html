@@ -145,7 +145,6 @@ r.style.setProperty('--color-text-education', 'white');
     section.frases p { font-size: 1.2rem; margin-top: 0.5rem;  }
     section.frases article > div { background-color: var(--color-bg-default); color: black; }
     section.frases article > div { padding: 2rem; height: 100%; border: 0.3rem solid var(--color-border-bilds); border-radius: 20px; }
-    section.frases article > div:hover { background-color: black; color: white; cursor: pointer; }
     section.frases.frac2 { grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));  }
     section.frases.frac3 { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));  }
 
@@ -217,11 +216,7 @@ r.style.setProperty('--color-text-education', 'white');
     }*/
 
     </STYLE>
-    
-<link rel="stylesheet" href="markdown.css" media="all">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
 
-<!--
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -257,20 +252,14 @@ window.onload = function() {
 
     }
 
-
 }
 </script>
--->
-
-
-
 
 
 
 
   </head>
   <body>
-
 
 <!-- Add GitHub corner logo -->
 <!--
@@ -299,13 +288,10 @@ aria-label="This site is hosted in GitHub" target="_blank">
         </ul>
       </nav>
     </header>
-
-    
 <!---------------------------------------------------------
 -----------------------------------------------------------
 ---------------------------------------------------------->
     <main>
-
       <section class="landing">
         <article>
           <div>
@@ -437,190 +423,27 @@ This has honed my ability of rapid learning and made me less afraid of trying ne
           </div>
       </section>
 
-
-
-
 <!---------------------------------------------------------
-------------- A list of contents displayable in popups ----
--- The contents of the popups are readed from this HTML.
--- Those are parsed as markdown by using showdown.js
+-----------------------------------------------------------
 ---------------------------------------------------------->
-<section class="frases frac2">     
-            <script>  
-              window.addEventListener('load', () => {
-                const container = document.createElement("div"); // Create a temporary container
-                container.innerHTML = `
-            <!-- Popup Dialog for text -->
-            <div id="Popup" style="display: none; position: fixed; top: 50%; left: 50%; width: 80%; height: 80%;
-            transform: translate(-50%, -50%); background-color: #111111dd; color: white;
-            padding: 0px 0px 5px 20px; border: 2px solid black;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000; ">
-            <p id="PopupText" class="markdown" style="margin: 0; font-size: 16px; height: calc( 90% + 20px );">New PopUp</p>
-            <hr style="height: 2px; background-color: #333;"/>
-            <p align="right" style="vertical-align: bottom;">
-              Brought to you by DJAC
-              <button id="closePopupBottom" style=" margin: 10px; padding: 10px 20px; text-transform: uppercase;
-              background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; ">Close</button>
-            </p>
-            </div>
-                `;
-                document.body.appendChild( container );
-
-                document.getElementById('closePopupBottom').addEventListener('click', () => {
-                    document.getElementById('Popup').style.display = 'none';    
-                }); 
-              }); 
-
-              function spawnPopup(caller) {
-                let mdconverter = new showdown.Converter();
-                document.getElementById('Popup').style.display = 'block';
-                document.getElementById('PopupText').innerHTML = mdconverter.makeHtml( caller.nextElementSibling.innerText.trim() );
-              }
-            </script>
-
-  <article> <div onclick="spawnPopup(this)">     Electronic Engineering 
-  </div><div style="display:none;">
-# Electronic Engineer side of me
-Started when I choosed my engineering speciality.
-  </div></article>
-  
-  <article>
-    <div onclick="spawnPopup(this)"> Manufacturing Engineering </div>
-    <div style="display:none;">
-# Manufacturing Engineering things that I have done
-Lorem Ipsum
-Lorem Ipsum
-# Popup proof of concept
-Lorem Ipsum
-    </div>
-  </article>
-  
-  <article>
-    <div onclick="spawnPopup(this)"> Project Management </div>
-    <div style="display:none;">
-# Project Management things that I have done
-Lorem Ipsum
-Lorem Ipsum
-
-# Popup proof of concept
-Lorem Ipsum
-    </div>
-  </article>
-  
-  <article>
-    <div onclick="spawnPopup(this)"> E&I Engineering </div>
-    <div style="display:none;">
-# Electrical and Instrumentation Engineering things
-Lorem Ipsum
-Lorem Ipsum
-
-# Popup proof of concept
-Lorem Ipsum
-    </div>
-  </article>
-  
-  <article>
-    <div onclick="spawnPopup(this)"> Software Programming </div>
-    <div style="display:none;">
-# SoftwareProgramming things
-Lorem Ipsum
-Lorem Ipsum
-
-# Popup proof of concept
-Lorem Ipsum
-    </div>
-  </article>
-  
-  <article>
-    <div onclick="spawnPopup(this)"> Hobbies: Trekking, Travel, Others </div>
-    <div style="display:none;">
-# SoftwareProgramming things
-Lorem Ipsum
-Lorem Ipsum
-
-# Popup proof of concept
-Lorem Ipsum
-
-        
-    </div>
-  </article>
-
-
-
+<section class="frases frac2">
+<article><div> Electronic Engineering </div></article>
+<article><div> Manufacturing Engineering </div></article>
+<article><div> Project Management </div></article>
+<article><div> E&I Engineering </div></article>
+<article><div> Software Programming </div></article>
+<article><div> Hobbies: Trekking, Travel, Others </div></article>
 </section>
 
-
-
 <!---------------------------------------------------------
-------------- On Demand IMG cycling through a list  -------
--- There is no need to pre-download the images on every load
--- Made to replace swiper.js which does needs to predownload everything. shit.
+-----------------------------------------------------------
 ---------------------------------------------------------->
-<section class="imgondemandcycler">
-
-<script>
-    const imgFileList = [
-      "slide_hobby4.jpg",
-      "slide_hobby1.jpg",
-      "slide_hobby5.jpg",
-      "slide_hobby7.jpg",
-      "slide_hobby2.jpg",
-      "slide_hobby3b.jpg",
-      "slide_hobby8.jpg",
-      "slide_hobby9.jpg",
-      "slide_hobby10.jpg",
-      "slide_hobby11.jpg",
-      "slide_fab1.jpg",
-      "slide_fab2.jpg",
-      "slide_fab3.jpg",
-      "slide_fab4.jpg",
-      "slide_fab6.jpg",
-      "slide_fab7.jpg",
-      "slide_fab5.jpg",
-      "slide_inst2.jpg",
-      "slide_inst1.jpg",
-      "slide_inst3.jpg",
-      "slide_inst4.jpg",
-      "slide_inst5.jpg",
-      "slide_inst6.jpg",
-      "slide_soft1b.jpg",
-      "slide_soft1.jpg",
-      "slide_soft2.jpg",
-      "slide_soft3.jpg"
-      ];
-    //imgFileList.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
-
-    function handleImageClickCicle(caller, inc) {
-      const img = caller.parentElement.querySelector("img");      
-      const urlParts = img.src.split('/');
-      const filename = urlParts[urlParts.length - 1];
-      const index = imgFileList.indexOf( filename );
-      const nextIndex = (index + inc) % imgFileList.length;
-      const newfilename = imgFileList[nextIndex];
-      img.src = "photos/"+newfilename;
-      console.log(img.src);
-    }
-    function handleLeftClick(caller) {  handleImageClickCicle( caller, -1 );  }
-    function handleRightClick(caller) {  handleImageClickCicle( caller, +1 );  }
-
-</script>
-
-<!-- Pending TODO: The images are not cut to the desired screen size. Most setups, up to now, will stretch the image. they may need to be cutted from the image file itself -->
-
-  <div style='position: relative; background-color:white; text-align: center; '>
-    <div onclick="handleLeftClick(this)" style='position: absolute; top:0; bottom:0; left:0; width:5%; cursor: pointer;  font-size: 6em; color: white; weight: bold; text-align: center; background-color: #ffffff11; vertical-align: middle;'> &lt; </div>
-    <div onclick="handleRightClick(this)" style='position: absolute; top:0; bottom:0; right:0; width:5%; cursor: pointer; font-size: 6em; color: white; weight: bold; text-align: center; background-color: #ffffff11; vertical-align: middle;'> &gt; </div>
-    <img src="photos/slide_hobby4.jpg" alt="hero image" style='width:100%; min-height: 500px; height: auto; object-fit: cover; object-position: center;'/>
-  </div>
-
-</section>
-
-
-<!-- 
 <section class="swiper">
-
+<!-- Slider main container -->
 <div class="swiper">
+<!-- Additional required wrapper -->
 <div class="swiper-wrapper">
+<!-- Slides -->
     <div class="swiper-slide"
     style='background-image: url("photos/slide_hobby4.jpg");'>
     <h1>Hobbies</h1><h2>Ushuaia, Tierra del Fuego, Argentina</h2>
@@ -753,7 +576,7 @@ Lorem Ipsum
 </div>
 </section>
 
--->
+
 
 
 <!---------------------------------------------------------

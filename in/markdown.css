@@ -1,0 +1,92 @@
+/* body {
+    background-color: #ffffff;
+    background-image: url(https://www.dillo.org/wp-content/themes/creattica/hybrid/extend/images/patterns/4.png);
+    background-repeat: repeat;
+}
+
+body{
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+ }*/
+
+ .markdown h1, 
+ .markdown h2{
+	font-weight: 300;
+	font-size: 40px;
+	margin-top: 20px;
+ }
+ .markdown a,
+ .markdown a:visited,
+ .markdown a:hover,
+ .markdown a:active{
+    position:relative;
+    transition:0.5s color ease;
+    text-decoration:none;
+    color:#64B5F6;
+  }
+ .markdown a:hover{
+    color:#607D8B;
+  }
+ .markdown a.before:before,
+ .markdown a.after:after{
+    content: "";
+    transition:0.5s all ease;
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
+    position:absolute;
+  }
+ .markdown a.before:before{
+    top:-0.25em;
+  }
+ .markdown a.after:after{
+    bottom:-0.25em;
+  }
+ .markdown a.before:before,
+ .markdown a.after:after{
+    height:5px;
+    height:0.35rem;
+    width:0;
+    background:#d73444;
+  }
+ .markdown a.first:after{
+    left:0;
+  }
+ .markdown a.before:hover:before,
+ .markdown a.after:hover:after{
+    width:100%;
+  }
+ .markdown ol {
+    counter-reset: list;
+    list-style: none;
+    padding-left: 15px;
+  }
+ .markdown ol li {
+    counter-increment: list;
+    margin-bottom: 10px;
+  }
+ .markdown ol li::before {
+    content: counter(list);
+    background: #64B5F6;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 50%;
+    width: 2.2em;
+    height: 2.2em;
+    line-height: 2.3em;
+    display: inline-block;
+    margin-right: 1em;
+  }
+ .markdown ul {
+    list-style-type: none;
+    padding-left: 15px;
+  }
+ .markdown ul li {
+    display: block;
+    width: 200px;
+    border-bottom: 1px solid #64B5F6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding: 10px 0px 10px 10px;
+  }
+  
