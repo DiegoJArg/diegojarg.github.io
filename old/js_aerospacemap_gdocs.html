@@ -110,7 +110,7 @@
                 .filter(v => v !== "");
 
             const arrayString = "[" + cells.join("\n") + "]";
-            console.log("Evaluating aerospaceCompanies v3:\n", arrayString);
+            console.log("Evaluating aerospaceCompanies v4:\n", arrayString);
 
             let aerospaceCompanies = [];
             try {
@@ -149,11 +149,11 @@
                 else if (icon === "space" || icon === "rocket" || icon === "cohete") el.className = "marker icon-space";
                 else el.className = "marker";
 
-                if (company.Coords) {
+                if (company.coords) {
                     console.log("INSERTING MARKER FOR Company: ", company);
                     new maplibregl.Marker(el)
-                        .setLngLat(company.Coords)
-                        .setPopup(new maplibregl.Popup().setText(company.Company || "Unnamed"))
+                        .setLngLat(company.coords)
+                        .setPopup(new maplibregl.Popup().setText(company.company || "Unnamed"))
                         .addTo(map);
                 }
             });
@@ -161,6 +161,7 @@
     </script>
 </body>
 </html>
+
 
 
 
