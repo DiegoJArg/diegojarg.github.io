@@ -139,7 +139,7 @@
             const aerospaceCompanies = await loadAerospaceCompanies();
 
             aerospaceCompanies.forEach(company => {
-                console.log("Company:", company);
+                //console.log("Company:", company);
 
                 const el = document.createElement("div");
                 const icon = (company.Icon || "").toLowerCase();
@@ -150,7 +150,7 @@
                 else el.className = "marker";
 
                 if (company.coords) {
-                    console.log("INSERTING MARKER FOR Company: ", company);
+                    //console.log("INSERTING MARKER FOR Company: ", company);
                     new maplibregl.Marker(el)
                         .setLngLat(company.coords)
                         .setPopup(new maplibregl.Popup().setText(company.company || "Unnamed"))
@@ -161,6 +161,7 @@
     </script>
 </body>
 </html>
+
 
 
 
