@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MapTiler Aerospace Test</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link
+        href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css"
+        rel="stylesheet"
+    />
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            height: 100%;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .marker {
+            background-color: #ff5722;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .marker-null {
+            background-color: #00000000;
+            font-size: 16px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #00000000;
+            box-shadow: 0 0 4px #00000000;
+        }
+
+        .marker::before {
+            /* por defecto, si no hay icono, nada */
+            content: "";
+        }
+
+        .icon-space::before {
+            content: "🚀";
+        }
+        .icon-satellite::before {
+            content: "🛰️";
+        }
+        .icon-plane::before {
+            content: "✈️";
+        }
+
+        .marker-alt {
+            background-image: url("https://cdn-icons-png.flaticon.com/512/854/854866.png");
+            background-size: cover;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
+    <script>
+        // URL de tu Google Sheet publicado como CSV
+        const sheetUrl =
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
+
+        async function loadCompaniesFromSheet() {
+            const response = await fetch(sheetUrl);
+            const csvText = await response.text();
+
+            // Partimos el CSV en líneas y columnas simples (asumiendo que no hay comas internas complejas)
+            const rows = csvText
+                .split("\n")
+                .map((r) => r.split(","))
+                .filter((r) => r.length > 1);
+
+            const header = rows.shift().map((h) => h.trim());
+
+            return rows.map((row) => {
+                const entry = {};
+                header.forEach((key, i) => {
+                    entry[key] = (row[i] || "").trim();
+                });
+                return entry;
+            });
+        }
+
+        const map = new maplibregl.Map({
+            container: "map",
+            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            center: [4.357, 52.011], // Delft
+            zoom: 5,
+        });
+
+        map.on("load", async () => {
+            const companies = await loadCompaniesFromSheet();
+
+            companies.forEach((company) => {
+                // Crear el elemento del marcador
+                const el = document.createElement("div");
+
+                // Asignar clase según el icono
+                // Columna "Icon" en la hoja: satellite / space / plane / etc.
+                const icon = (company.Icon || "").toLowerCase();
+
+                if (icon === "satellite") {
+                    el.className = "marker icon-satellite";
+                } else if (icon === "plane" || icon === "avion") {
+                    el.className = "marker icon-plane";
+                } else if (icon === "space" || icon === "rocket" || icon === "cohete") {
+                    el.className = "marker icon-space";
+                } else {
+                    el.className = "marker";
+                }
+
+                // Parsear coordenadas de la columna "Coords" (formato: "lon, lat")
+                let coords = null;
+                if (company.Coords) {
+                    const parts = company.Coords.split(",");
+                    if (parts.length === 2) {
+                        const lon = parseFloat(parts[0]);
+                        const lat = parseFloat(parts[1]);
+                        if (!isNaN(lon) && !isNaN(lat)) {
+                            coords = [lon, lat];
+                        }
+                    }
+                }
+
+                const getCoordinates = async () => {
+                    // Si no hay coords, intentar geocodificar la columna "Address"
+                    if (!coords && company.Address) {
+                        try {
+                            const response = await fetch(
+                                "https://nominatim.openstreetmap.org/search?q=" +
+                                    encodeURIComponent(company.Address) +
+                                    "&format=json"
+                            );
+                            const results = await response.json();
+                            if (results.length > 0) {
+                                coords = [
+                                    parseFloat(results[0].lon),
+                                    parseFloat(results[0].lat),
+                                ];
+                            }
+                        } catch (err) {
+                            console.error("Error geocodificando:", err);
+                        }
+                    }
+
+                    if (coords) {
+                        new maplibregl.Marker(el)
+                            .setLngLat(coords)
+                            .setPopup(
+                                new maplibregl.Popup().setText(
+                                    company.Company || "Sin nombre"
+                                )
+                            )
+                            .addTo(map);
+                    }
+                };
+
+                getCoordinates();
+            });
+        });
+    </script>
+</body>
+</html>
