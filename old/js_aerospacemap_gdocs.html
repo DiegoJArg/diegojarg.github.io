@@ -79,6 +79,7 @@
         async function loadCompaniesFromSheet() {
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
+            console.log("CSV data loaded:", csvText);
 
             // Partimos el CSV en líneas y columnas simples (asumiendo que no hay comas internas complejas)
             const rows = csvText
@@ -92,6 +93,7 @@
                 const entry = {};
                 header.forEach((key, i) => {
                     entry[key] = (row[i] || "").trim();
+                    console.log(`Parsed ${key}:`, entry[key]);
                 });
                 return entry;
             });
@@ -108,6 +110,10 @@
             const companies = await loadCompaniesFromSheet();
 
             companies.forEach((company) => {
+                console.log("Processing company:", company);
+                console.log("Company name:", company.Company);
+                console.log("Company coords:", company.Coords);
+                console.log("Company icon:", company.Icon);
                 // Crear el elemento del marcador
                 const el = document.createElement("div");
 
@@ -152,4 +158,5 @@
     </script>
 </body>
 </html>
+
 
