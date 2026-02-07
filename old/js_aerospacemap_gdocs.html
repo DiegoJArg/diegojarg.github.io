@@ -149,19 +149,9 @@
                 else if (icon === "space" || icon === "rocket" || icon === "cohete") el.className = "marker icon-space";
                 else el.className = "marker";
 
-                let coords = null;
                 if (company.Coords) {
-                    const parts = String(company.Coords).split(",");
-                    if (parts.length === 2) {
-                        const lon = parseFloat(parts[0]);
-                        const lat = parseFloat(parts[1]);
-                        if (!isNaN(lon) && !isNaN(lat)) coords = [lon, lat];
-                    }
-                }
-
-                if (coords) {
                     new maplibregl.Marker(el)
-                        .setLngLat(coords)
+                        .setLngLat(company.Coords)
                         .setPopup(new maplibregl.Popup().setText(company.Company || "Unnamed"))
                         .addTo(map);
                 }
@@ -170,4 +160,5 @@
     </script>
 </body>
 </html>
+
 
