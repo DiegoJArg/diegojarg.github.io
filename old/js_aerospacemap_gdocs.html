@@ -44,7 +44,6 @@
         }
 
         .marker::before {
-            /* por defecto, si no hay icono, nada */
             content: "";
         }
 
@@ -72,33 +71,52 @@
 
     <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
     <script>
-        // URL de tu Google Sheet publicado como CSV
+        // Google Sheet published as CSV
         const sheetUrl =
             "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
 
-        async function loadCompaniesFromSheet() {
+        // 1) Load CSV, extract 'Array entry' column, build aerospaceCompanies array
+        async function loadAerospaceCompanies() {
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
             console.log("CSV data loaded:", csvText);
 
-            // Partimos el CSV en líneas y columnas simples (asumiendo que no hay comas internas complejas)
+            // Split CSV into rows and columns (simple split, assuming no quoted commas)
             const rows = csvText
                 .split("\n")
                 .map((r) => r.split(","))
                 .filter((r) => r.length > 1);
 
             const header = rows.shift().map((h) => h.trim());
+            const arrayEntryIndex = header.indexOf("Array entry");
 
-            return rows.map((row) => {
-                const entry = {};
-                header.forEach((key, i) => {
-                    entry[key] = (row[i] || "").trim();
-                    console.log(`Parsed ${key}:`, entry[key]);
-                });
-                return entry;
-            });
+            if (arrayEntryIndex === -1) {
+                console.error("Column 'Array entry' not found");
+                return [];
+            }
+
+            // Get non-empty cells from 'Array entry'
+            const cells = rows
+                .map((row) => (row[arrayEntryIndex] || "").trim())
+                .filter((v) => v !== "");
+
+            // Build string: [cell1,cell2,...]
+            const arrayString = "[" + cells.join("\n") + "]";
+            console.log("Array string for aerospaceCompanies:\n", arrayString);
+
+            let aerospaceCompanies = [];
+            try {
+                // Each cell is assumed to be a valid JS literal (e.g. {Company:"...", Coords:"...", Icon:"..."})
+                aerospaceCompanies = eval(arrayString);
+            } catch (e) {
+                console.error("Error evaluating aerospaceCompanies:", e);
+            }
+
+            console.log("aerospaceCompanies:", aerospaceCompanies);
+            return aerospaceCompanies;
         }
 
+        // 2) Init map
         const map = new maplibregl.Map({
             container: "map",
             style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
@@ -106,21 +124,19 @@
             zoom: 5,
         });
 
+        // 3) On load, use aerospaceCompanies to populate MapLibre
         map.on("load", async () => {
-            const companies = await loadCompaniesFromSheet();
+            const aerospaceCompanies = await loadAerospaceCompanies();
 
-            companies.forEach((company) => {
+            aerospaceCompanies.forEach((company) => {
                 console.log("Processing company:", company);
                 console.log("Company name:", company.Company);
                 console.log("Company coords:", company.Coords);
                 console.log("Company icon:", company.Icon);
-                // Crear el elemento del marcador
+
                 const el = document.createElement("div");
 
-                // Asignar clase según el icono
-                // Columna "Icon" en la hoja: satellite / space / plane / etc.
                 const icon = (company.Icon || "").toLowerCase();
-
                 if (icon === "satellite") {
                     el.className = "marker icon-satellite";
                 } else if (icon === "plane" || icon === "avion") {
@@ -131,10 +147,10 @@
                     el.className = "marker";
                 }
 
-                // Parsear coordenadas de la columna "Coords" (formato: "lon, lat")
+                // Parse "Coords" as "lon, lat"
                 let coords = null;
                 if (company.Coords) {
-                    const parts = company.Coords.split(",");
+                    const parts = String(company.Coords).split(",");
                     if (parts.length === 2) {
                         const lon = parseFloat(parts[0]);
                         const lat = parseFloat(parts[1]);
@@ -143,6 +159,7 @@
                         }
                     }
                 }
+
                 if (coords) {
                     new maplibregl.Marker(el)
                         .setLngLat(coords)
@@ -158,5 +175,3 @@
     </script>
 </body>
 </html>
-
-
