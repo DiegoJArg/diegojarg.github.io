@@ -149,7 +149,7 @@
                     //console.log("INSERTING MARKER FOR Company: ", company);
                     new maplibregl.Marker(el)
                         .setLngLat(company.coords)
-                        .setPopup(new maplibregl.Popup().setText(company.company || "Unnamed"))
+                        .setPopup(new maplibregl.Popup().setText(company.name || "Unnamed"))
                         .addTo(map);
                 }
             });
@@ -157,6 +157,7 @@
     </script>
 </body>
 </html>
+
 
 
 
