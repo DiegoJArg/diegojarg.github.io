@@ -150,6 +150,7 @@
                 else el.className = "marker";
 
                 if (company.Coords) {
+                    console.log("INSERTING MARKER FOR Company: ", company);
                     new maplibregl.Marker(el)
                         .setLngLat(company.Coords)
                         .setPopup(new maplibregl.Popup().setText(company.Company || "Unnamed"))
@@ -160,5 +161,6 @@
     </script>
 </body>
 </html>
+
 
 
