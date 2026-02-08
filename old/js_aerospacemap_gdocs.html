@@ -122,33 +122,8 @@
             // Parse CSV and extract header and rows
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
-            const rows = parseCSV_dictrows(csvText, ['name','sector', 'coords']);
-            //const header = rows.shift().map(h => h.trim());
-
-            // // check the presence of relevant column names
-            // const idxName = header.indexOf("Name");
-            // if (idxName === -1) return console.error("Column 'Name' not found") || [];
-            // const idxCoords = header.indexOf("Coords");
-            // if (idxCoords === -1) return console.error("Column 'Coords' not found") || [];
-
-            // // clears empty rows in the columns Name and Coords, and trims whitespace
-            // const cells = rows
-            //     .filter(r => (r[idxName] || "").trim() !== "" && (r[idxCoords] || "").trim() !== "")
-            //     .filter(v => v !== "");
-
-            aerospaceCompanies = rows;
-            console.log("Evaluating aerospaceCompanies v5:\n", aerospaceCompanies);
-
-            // const arrayString = "[" + cells.join("\n") + "]";
-            // console.log("Evaluating aerospaceCompanies v5:\n", arrayString);
-
-            // let aerospaceCompanies = [];
-            // try {
-            //     aerospaceCompanies = eval(arrayString);
-            // } catch (e) {
-            //     console.error("Eval error:", e);
-            // }
-
+            aerospaceCompanies = parseCSV_dictrows(csvText, ['name','sector', 'coords']);
+            console.log("Evaluating CSV data from: \n",sheetUrl,"\n\n", aerospaceCompanies);
             return aerospaceCompanies;
         }
 
@@ -168,12 +143,25 @@
         map.on("load", async () => {
             const aerospaceCompanies = await loadAerospaceCompanies();
 
-            aerospaceCompanies.forEach(company => {
-                console.log("Company:", company);
+            const sectorsColors = {};
+            let colorCount = 0;
 
+            aerospaceCompanies.forEach(company => {
+                const sector = company.sector.toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
+                if (sector && !sectorsColors[sector]) {
+                    // Generate a clearly differentiated color using HSL with a golden angle distribution
+                    const hue = (colorCount * 137.5) % 360;
+                    sectorsColors[sector] = `hsl(${hue}, 75%, 50%)`;
+                    colorCount++;
+                }
+            });
+
+            aerospaceCompanies.forEach(company => {
+                //console.log("Company:", company);
                 const el = document.createElement("div");
                 const sector = (company.sector || "").toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
                 el.className = "marker icon-" + sector;
+                el.style.backgroundColor = sectorsColors[company.sector] || "#ff5722"; // Fallback color
 
                 if (company.coords) {
                     //console.log("INSERTING MARKER FOR Company: ", company);
