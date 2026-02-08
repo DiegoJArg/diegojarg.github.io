@@ -106,6 +106,8 @@
                      if (!includeHeaders || includeHeaders.includes(header)) {
                          obj[header] = row[i];
                      }
+                     if ( obj.join("").length  === 0)
+                         return null; // Skip empty row
                  });
                  return obj;
              });
