@@ -93,31 +93,36 @@
         // 2) Load aerospaceCompanies from "Array entry" column
         // ------------------------------------------------------------
         async function loadAerospaceCompanies() {
+
+            // Parse CSV and extract header and rows
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
-
             const rows = parseCSV(csvText);
             const header = rows.shift().map(h => h.trim());
 
-            const idx = header.indexOf("Array entry");
-            if (idx === -1) {
-                console.error("Column 'Array entry' not found");
-                return [];
-            }
+            // check the presence of relevant column names
+            const idxName = header.indexOf("Name");
+            if (idxName === -1) return console.error("Column 'Name' not found") || [];
+            const idxCoords = header.indexOf("Coords");
+            if (idxCoords === -1) return console.error("Column 'Coords' not found") || [];
 
+            // clears empty rows in the columns Name and Coords, and trims whitespace
             const cells = rows
-                .map(r => (r[idx] || "").trim())
+                .filter(r => (r[idxName] || "").trim() !== "" && (r[idxCoords] || "").trim() !== "")
                 .filter(v => v !== "");
 
-            const arrayString = "[" + cells.join("\n") + "]";
-            console.log("Evaluating aerospaceCompanies v5:\n", arrayString);
+            aerospaceCompanies = cells;
+            console.log("Evaluating aerospaceCompanies v5:\n", aerospaceCompanies);
 
-            let aerospaceCompanies = [];
-            try {
-                aerospaceCompanies = eval(arrayString);
-            } catch (e) {
-                console.error("Eval error:", e);
-            }
+            // const arrayString = "[" + cells.join("\n") + "]";
+            // console.log("Evaluating aerospaceCompanies v5:\n", arrayString);
+
+            // let aerospaceCompanies = [];
+            // try {
+            //     aerospaceCompanies = eval(arrayString);
+            // } catch (e) {
+            //     console.error("Eval error:", e);
+            // }
 
             return aerospaceCompanies;
         }
@@ -157,11 +162,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
