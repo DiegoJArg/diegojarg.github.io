@@ -143,25 +143,33 @@
         map.on("load", async () => {
             const aerospaceCompanies = await loadAerospaceCompanies();
 
+            const style = document.createElement('style');
+            document.head.appendChild(style);
             const sectorsColors = {};
             let colorCount = 0;
 
             aerospaceCompanies.forEach(company => {
-                const sector = company.sector.toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
-                if (sector && !sectorsColors[sector]) {
+                const sector = (company.sector || "").toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
+                if (sector && !sectorsColors[company.sector]) {
                     // Generate a clearly differentiated color using HSL with a golden angle distribution
                     const hue = (colorCount * 137.5) % 360;
-                    sectorsColors[sector] = `hsl(${hue}, 75%, 50%)`;
+                    const color = `hsl(${hue}, 75%, 50%)`;
+                    sectorsColors[company.sector] = color;
                     colorCount++;
+
+                    // Create a new css class variant named marker-<sector> and change the background color for that class
+                    style.textContent += `.marker-${sector} { background-color: ${color} !important; }\n`;
                 }
             });
+
+            console.log("Sectors and Colors: \n", sectorsColors);
 
             aerospaceCompanies.forEach(company => {
                 //console.log("Company:", company);
                 const el = document.createElement("div");
                 const sector = (company.sector || "").toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
-                el.className = "marker icon-" + sector;
-                el.style.backgroundColor = sectorsColors[company.sector] || "#ff5722"; // Fallback color
+                el.className = "marker marker-"+sector+" icon-" + sector;
+                //el.style.setProperty("background-color", sectorsColors[company.sector] || "#ff5722", "important"); // Fallback color
 
                 if (company.coords) {
                     //console.log("INSERTING MARKER FOR Company: ", company);
