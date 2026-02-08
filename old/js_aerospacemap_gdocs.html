@@ -110,7 +110,7 @@
                  if (Object.values(obj).join("").trim().length === 0)
                      return null; // Skip empty row
                  return obj;
-             });
+             }).filter(row => row !== null);
          }
 
         // ------------------------------------------------------------
@@ -171,8 +171,8 @@
                 console.log("Company:", company);
 
                 const el = document.createElement("div");
-                const icon = (company.icon || "").toLowerCase();
-                el.className = "marker icon-" + icon;
+                const sector = (company.sector || "").toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
+                el.className = "marker icon-" + sector;
 
                 if (company.coords) {
                     //console.log("INSERTING MARKER FOR Company: ", company);
