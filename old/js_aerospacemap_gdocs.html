@@ -107,10 +107,11 @@
                          obj[header] = row[i];
                      }
                  });
-                 if (Object.values(obj).join("").trim().length === 0)
-                     return null; // Skip empty row
                  return obj;
-             }).filter(row => row !== null);
+             }).filter(obj => {
+                 // Exclude lines that are empty in the final filtered dictionary
+                 return Object.values(obj).join("").trim().length > 0;
+             });
          }
 
         // ------------------------------------------------------------
@@ -177,7 +178,7 @@
                 if (company.coords) {
                     //console.log("INSERTING MARKER FOR Company: ", company);
                     new maplibregl.Marker(el)
-                        .setLngLat(company.coords)
+                        .setLngLat(company.coords.split(",").map(Number)) // Convert "lon,lat" string to [lon, lat] array
                         .setPopup(new maplibregl.Popup().setText(company.name || "Unnamed"))
                         .addTo(map);
                 }
