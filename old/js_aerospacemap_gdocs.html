@@ -97,7 +97,7 @@
              const rows = parseCSV(text);
              if (rows.length === 0) return [];
 
-             const headers = rows.shift().map(h => h.trim());
+             const headers = rows.shift().map(h => h.trim().toLowerCase());
              return rows.map(row => {
                  const obj = {};
                  headers.forEach((header, i) => {
@@ -119,7 +119,7 @@
             // Parse CSV and extract header and rows
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
-            const rows = parseCSV_dictrows(csvText, ['Name','Coords']);
+            const rows = parseCSV_dictrows(csvText, ['name','sector', 'coords']);
             //const header = rows.shift().map(h => h.trim());
 
             // // check the presence of relevant column names
