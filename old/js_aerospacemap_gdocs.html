@@ -89,6 +89,28 @@
             return rows;
         }
 
+        /**
+         * Parses CSV text into a list of dictionaries where each object
+         * represents a row with keys from the column headers.
+         */
+         function parseCSV_dictrows(text, includeHeaders) {
+             const rows = parseCSV(text);
+             if (rows.length === 0) return [];
+
+             const headers = rows.shift().map(h => h.trim());
+             return rows.map(row => {
+                 const obj = {};
+                 headers.forEach((header, i) => {
+                     // Only include the column if no includeHeaders list is provided
+                     // or if the current header is present in the includeHeaders list.
+                     if (!includeHeaders || includeHeaders.includes(header)) {
+                         obj[header] = row[i];
+                     }
+                 });
+                 return obj;
+             });
+         }
+
         // ------------------------------------------------------------
         // 2) Load aerospaceCompanies from "Array entry" column
         // ------------------------------------------------------------
@@ -97,21 +119,21 @@
             // Parse CSV and extract header and rows
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
-            const rows = parseCSV(csvText);
+            const rows = parseCSV_dictrows(csvText, ['Name','Coords']);
             const header = rows.shift().map(h => h.trim());
 
-            // check the presence of relevant column names
-            const idxName = header.indexOf("Name");
-            if (idxName === -1) return console.error("Column 'Name' not found") || [];
-            const idxCoords = header.indexOf("Coords");
-            if (idxCoords === -1) return console.error("Column 'Coords' not found") || [];
+            // // check the presence of relevant column names
+            // const idxName = header.indexOf("Name");
+            // if (idxName === -1) return console.error("Column 'Name' not found") || [];
+            // const idxCoords = header.indexOf("Coords");
+            // if (idxCoords === -1) return console.error("Column 'Coords' not found") || [];
 
-            // clears empty rows in the columns Name and Coords, and trims whitespace
-            const cells = rows
-                .filter(r => (r[idxName] || "").trim() !== "" && (r[idxCoords] || "").trim() !== "")
-                .filter(v => v !== "");
+            // // clears empty rows in the columns Name and Coords, and trims whitespace
+            // const cells = rows
+            //     .filter(r => (r[idxName] || "").trim() !== "" && (r[idxCoords] || "").trim() !== "")
+            //     .filter(v => v !== "");
 
-            aerospaceCompanies = cells;
+            aerospaceCompanies = rows;
             console.log("Evaluating aerospaceCompanies v5:\n", aerospaceCompanies);
 
             // const arrayString = "[" + cells.join("\n") + "]";
