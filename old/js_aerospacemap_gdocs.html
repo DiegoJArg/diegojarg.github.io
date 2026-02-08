@@ -120,7 +120,7 @@
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
             const rows = parseCSV_dictrows(csvText, ['Name','Coords']);
-            const header = rows.shift().map(h => h.trim());
+            //const header = rows.shift().map(h => h.trim());
 
             // // check the presence of relevant column names
             // const idxName = header.indexOf("Name");
