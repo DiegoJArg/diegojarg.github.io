@@ -28,38 +28,6 @@
             justify-content: center;
             font-size: 16px;
         }
-        .marker-conic {
-            background-color: #ff5722;
-            width: 32px;
-            height: 32px;
-            border-radius: 50% 50% 50% 0;
-            border: 2px solid white;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            transform: rotate(-45deg);
-            position: relative;
-        }
-
-        .marker-conic::before {
-            display: inline-block;
-            transform: rotate(45deg);
-            z-index: 2;
-        }
-
-        /* The superimposed figure: creates a circular face like the .marker class above */
-        .marker-conic::after {
-            content: "";
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            background: inherit;
-            border-radius: 50%;
-            border: 2px solid white;
-            z-index: 1;
-        }
 
         .marker::before { content: ""; }
         .icon-newspace::before { content: "🛰️"; }
@@ -210,7 +178,7 @@
                 //console.log("Company:", company);
                 const el = document.createElement("div");
                 const sector = (company.sector || "").toLowerCase().replace(/\s+/g, '_'); // e.g. "Space Tech" -> "space_tech"
-                el.className = "marker-conic marker-"+sector ; //+" icon-" + sector;
+                el.className = "marker marker-"+sector ; //+" icon-" + sector;
                 //el.style.setProperty("background-color", sectorsColors[company.sector] || "#ff5722", "important"); // Fallback color
 
                 if (company.coords) {
