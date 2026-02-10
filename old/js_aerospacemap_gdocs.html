@@ -141,14 +141,14 @@
         // Check maps here: https://cloud.maptiler.com/maps/
         const map = new maplibregl.Map({
             container: "map",
-            //style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
-            style: "https://api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            //style: "https://api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
             center: [4.357, 52.011], // Delft
             zoom: 5,
             willReadFrequently: true,
         });
-        const canvas = document.getElementById("canvas");
-        canvas.getContext('2d', { willReadFrequently: true });
+        //const canvas = document.getElementById("canvas");
+        //canvas.getContext('2d', { willReadFrequently: true });
 
         // ------------------------------------------------------------
         // 4) Add markers from aerospaceCompanies
