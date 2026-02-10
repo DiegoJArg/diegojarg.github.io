@@ -4,10 +4,7 @@
     <meta charset="utf-8" />
     <title>MapTiler Aerospace Test</title>
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link
-        href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css"
-        rel="stylesheet"
-    />
+    <link href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css" rel="stylesheet"/>
 
     <style>
         body, html {
@@ -162,7 +159,8 @@
         // ------------------------------------------------------------
         const map = new maplibregl.Map({
             container: "map",
-            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            //style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            style: "https://]api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
             center: [4.357, 52.011], // Delft
             zoom: 5,
         });
