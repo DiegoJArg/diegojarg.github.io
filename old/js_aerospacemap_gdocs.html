@@ -50,16 +50,13 @@
     <div id="map"></div>
 
     <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script> -->
     <script>
-        // Google Sheet CSV URL
-        const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
-        //const sheetUrl = "https://drive.google.com/uc?export=download&id=1Qic6JmP4eVj1SgUWSYYz4Tu07a4CfgPY";
-        // This second option uses google drive directly but fails with CORS issues, so we need to use the "publish to web" option in google sheets and use the generated CSV URL instead (the first one above).
-
         // ------------------------------------------------------------
         // 1) Robust CSV parser (handles quotes, commas, escapes)
+        // Alternativelly, we could use a library like PapaParse for more complex CSV parsing needs, but here we implement a simple custom parser for demonstration purposes.
         // ------------------------------------------------------------
+
         function parseCSV(text) {
             const rows = [];
             let current = [];
@@ -97,6 +94,53 @@
 
             return rows;
         }
+    </script>
+
+    <script>
+        async function loadCSV() {
+            const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
+            const rows = Papa.parse(text, {header: true, dynamicTyping: true, skipEmptyLines: true});
+            //const rows = parseCSV(text);
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Convert CSV into geojson format
+            // └────────────────────────────────────────────────────────────┘
+            const georows = rows.data.map(row => ({
+              type: "Feature",
+              geometry: {
+                  type: "Point",
+                  coordinates: row.coords.split(",").map(Number) }, // [row.longitude, row.latitude] },
+                  properties: row // Include all other columns as properties, e.g. name, sector, etc.
+            }))
+            const geojson = { type: "FeatureCollection", features: georows };
+
+            map.on("load", () => {
+                map.addSource("points", {
+                    type: "geojson",
+                    data: geojson
+                });
+
+                map.addLayer({
+                    id: "points-layer",
+                    type: "circle",
+                    source: "points",
+                    paint: {
+                        "circle-radius": 6,
+                        "circle-color": "#ff5500",
+                        "circle-stroke-width": 1,
+                        "circle-stroke-color": "#fff"
+                    }
+                });
+            });
+        }
+        loadCSV();
+    </script>
+
+<!--
+    <script>
+        // Google Sheet CSV URL
+        const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
+        //const sheetUrl = "https://drive.google.com/uc?export=download&id=1Qic6JmP4eVj1SgUWSYYz4Tu07a4CfgPY";
+        // This second option uses google drive directly but fails with CORS issues, so we need to use the "publish to web" option in google sheets and use the generated CSV URL instead (the first one above).
 
         /**
          * Parses CSV text into a list of dictionaries where each object
@@ -195,5 +239,6 @@
             });
         });
     </script>
+    -->
 </body>
 </html>
