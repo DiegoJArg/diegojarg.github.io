@@ -57,7 +57,31 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
         let fullGeoJSON = null;
+        // ┌────────────────────────────────────────────────────────────┐
+        // | filter function to apply sector filter to the map by updating the data source with filtered GeoJSON based on selected sector, allowing dynamic visualization of points by sector
+        // └────────────────────────────────────────────────────────────┘
+        function applySectorFilter(sector) {
+            let filtered;
 
+            if (sector === "all") {
+                filtered = fullGeoJSON;
+            } else {
+                filtered = {
+                    type: "FeatureCollection",
+                    features: fullGeoJSON.features.filter(
+                        f => f.properties.sector === sector
+                    )
+                };
+            }
+
+            map.getSource("points").setData(filtered);
+        }
+
+
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Initialize MapLibre GL JS map with specified container, style, center, zoom level, and performance optimization for frequent data updates, setting the stage for dynamic map interactions and visualizations
+        // └────────────────────────────────────────────────────────────┘
         const map = new maplibregl.Map({
             container: "map",
             style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
@@ -71,50 +95,29 @@
         // | Populate sector filter dropdown with unique sectors from the CSV data and add event listener to update map filters based on selected sector, allowing dynamic visualization of points by sector
         // └────────────────────────────────────────────────────────────┘
         async function populateFilter( map, rows ){
-          // Build sector list
-          const sectorSet = new Set();
+            // Build sector list
+            const sectorSet = new Set();
 
-          rows.data.forEach(row => {
-              if (row.sector) sectorSet.add(row.sector.trim());
-          });
+            rows.data.forEach(row => {
+                if (row.sector) sectorSet.add(row.sector.trim());
+            });
 
-          // Populate dropdown
-          const filterSelect = document.getElementById("sectorFilter");
-          sectorSet.forEach(sector => {
-              const opt = document.createElement("option");
-              opt.value = sector;
-              opt.textContent = sector;
-              filterSelect.appendChild(opt);
-          });
-
-
-          // ┌────────────────────────────────────────────────────────────┐
-          // | filter function to apply sector filter to the map by updating the data source with filtered GeoJSON based on selected sector, allowing dynamic visualization of points by sector
-          // └────────────────────────────────────────────────────────────┘
-          function applySectorFilter(sector) {
-              let filtered;
-
-              if (sector === "all") {
-                  filtered = fullGeoJSON;
-              } else {
-                  filtered = {
-                      type: "FeatureCollection",
-                      features: fullGeoJSON.features.filter(
-                          f => f.properties.sector === sector
-                      )
-                  };
-              }
-
-              map.getSource("points").setData(filtered);
-          }
+            // Populate dropdown
+            const filterSelect = document.getElementById("sectorFilter");
+            sectorSet.forEach(sector => {
+                const opt = document.createElement("option");
+                opt.value = sector;
+                opt.textContent = sector;
+                filterSelect.appendChild(opt);
+            });
 
 
-          // ┌────────────────────────────────────────────────────────────┐
-          // | Add event listener to sector filter dropdown to apply selected sector filter to the map, allowing dynamic visualization of points by sector based on user selection
-          // └────────────────────────────────────────────────────────────┘
-          document.getElementById("sectorFilter").addEventListener("change", (e) => {
-              applySectorFilter(e.target.value);
-          });
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add event listener to sector filter dropdown to apply selected sector filter to the map, allowing dynamic visualization of points by sector based on user selection
+            // └────────────────────────────────────────────────────────────┘
+            document.getElementById("sectorFilter").addEventListener("change", (e) => {
+                applySectorFilter(e.target.value);
+            });
 
 /*           filterSelect.addEventListener("change", () => {
                 const selected = filterSelect.value;
@@ -173,8 +176,8 @@
               properties: row // Include all other columns as properties, e.g. name, sector, etc.
             }));
             const geojson = { type: "FeatureCollection", features: georows };
-            //console.log("GeoJSON: \n",geojson);
             fullGeoJSON = geojson;
+            //console.log("GeoJSON: \n",geojson);
 
 
             // ┌────────────────────────────────────────────────────────────┐
