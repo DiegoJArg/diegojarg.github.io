@@ -56,6 +56,8 @@
     <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
+        let fullGeoJSON = null;
+
         const map = new maplibregl.Map({
             container: "map",
             style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
@@ -65,6 +67,9 @@
             willReadFrequently: true,
         });
 
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Populate sector filter dropdown with unique sectors from the CSV data and add event listener to update map filters based on selected sector, allowing dynamic visualization of points by sector
+        // └────────────────────────────────────────────────────────────┘
         async function populateFilter( map, rows ){
           // Build sector list
           const sectorSet = new Set();
@@ -82,7 +87,36 @@
               filterSelect.appendChild(opt);
           });
 
-          filterSelect.addEventListener("change", () => {
+
+          // ┌────────────────────────────────────────────────────────────┐
+          // | filter function to apply sector filter to the map by updating the data source with filtered GeoJSON based on selected sector, allowing dynamic visualization of points by sector
+          // └────────────────────────────────────────────────────────────┘
+          function applySectorFilter(sector) {
+              let filtered;
+
+              if (sector === "all") {
+                  filtered = fullGeoJSON;
+              } else {
+                  filtered = {
+                      type: "FeatureCollection",
+                      features: fullGeoJSON.features.filter(
+                          f => f.properties.sector === sector
+                      )
+                  };
+              }
+
+              map.getSource("points").setData(filtered);
+          }
+
+
+          // ┌────────────────────────────────────────────────────────────┐
+          // | Add event listener to sector filter dropdown to apply selected sector filter to the map, allowing dynamic visualization of points by sector based on user selection
+          // └────────────────────────────────────────────────────────────┘
+          document.getElementById("sectorFilter").addEventListener("change", (e) => {
+              applySectorFilter(e.target.value);
+          });
+
+/*           filterSelect.addEventListener("change", () => {
                 const selected = filterSelect.value;
 
                 if (selected === "all") map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
@@ -108,10 +142,15 @@
                         ["==", ["get", "sector"], selected]
                   ]);
                 }
-          });
+          }); */
 
         }
 
+
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Load CSV data from Google Sheets, parse it, and convert it into GeoJSON format with proper handling of coordinates and properties
+        // └────────────────────────────────────────────────────────────┘
         async function loadCSV() {
             const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
             const response = await fetch(sheetUrl);
@@ -135,6 +174,7 @@
             }));
             const geojson = { type: "FeatureCollection", features: georows };
             //console.log("GeoJSON: \n",geojson);
+            fullGeoJSON = geojson;
 
 
             // ┌────────────────────────────────────────────────────────────┐
