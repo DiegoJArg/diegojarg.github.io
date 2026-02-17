@@ -47,6 +47,10 @@
     </style>
 </head>
 <body>
+    <select id="sectorFilter">
+        <option value="all">All sectors</option>
+    </select>
+
     <div id="map"></div>
 
     <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
@@ -61,16 +65,59 @@
             willReadFrequently: true,
         });
 
+        async function populateFilter( map, rows ){
+          // Build sector list
+          const sectorSet = new Set();
+
+          rows.data.forEach(row => {
+              if (row.sector) sectorSet.add(row.sector.trim());
+          });
+
+          // Populate dropdown
+          const filterSelect = document.getElementById("sectorFilter");
+          sectorSet.forEach(sector => {
+              const opt = document.createElement("option");
+              opt.value = sector;
+              opt.textContent = sector;
+              filterSelect.appendChild(opt);
+          });
+
+          filterSelect.addEventListener("change", () => {
+              const selected = filterSelect.value;
+
+              if (selected === "all") {
+                  map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
+              } else {
+                  map.setFilter("unclustered-point", [
+                      "all",
+                      ["!", ["has", "point_count"]],
+                      ["==", ["get", "sector"], selected]
+                  ]);
+              }
+
+              // Clusters must also be filtered
+              if (selected === "all") {
+                  map.setFilter("clusters", ["has", "point_count"]);
+              } else {
+                  map.setFilter("clusters", [
+                      "all",
+                      ["has", "point_count"],
+                      ["==", ["get", "sector"], selected]
+                  ]);
+              }
+          });
+
+        }
+
         async function loadCSV() {
             const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
             const response = await fetch(sheetUrl);
             const csvText = await response.text();
             const rows = Papa.parse(csvText, {
-              header: true,
-              dynamicTyping: true,
-              skipEmptyLines: true,
-              transformHeader: header => header.trim().toLowerCase()
+                header: true, dynamicTyping: true, skipEmptyLines: true,
+                transformHeader: header => header.trim().toLowerCase()
             });
+            populateFilter(map, rows);
             //const rows = parseCSV(csvText);
             console.log("Evaluating CSV data from: \n",sheetUrl,"\n\n", rows);
             // ┌────────────────────────────────────────────────────────────┐
