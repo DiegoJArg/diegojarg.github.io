@@ -158,6 +158,7 @@
                             30
                         ]
                     }
+
                 });
 
                 // ┌────────────────────────────────────────────────────────────┐
@@ -214,6 +215,13 @@
                     }
                 });
 
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Populate dropdown filter with unique sectors from the CSV and implement filtering logic to show/hide points based on selected sector
+                // └────────────────────────────────────────────────────────────┘
+                populateFilter(map, rows);
+
+
             });
 
             // ┌────────────────────────────────────────────────────────────┐
@@ -248,11 +256,6 @@
                 });
             });
 
-
-            // ┌────────────────────────────────────────────────────────────┐
-            // | Populate dropdown filter with unique sectors from the CSV and implement filtering logic to show/hide points based on selected sector
-            // └────────────────────────────────────────────────────────────┘
-            populateFilter(map, rows);
 
             // ┌────────────────────────────────────────────────────────────┐
             // | Add geolocation marker for user's current position
