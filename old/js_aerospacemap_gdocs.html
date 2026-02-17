@@ -95,7 +95,7 @@
         // ┌────────────────────────────────────────────────────────────┐
         // | Populate sector filter dropdown with unique sectors from the CSV data and add event listener to update map filters based on selected sector, allowing dynamic visualization of points by sector
         // └────────────────────────────────────────────────────────────┘
-        async function populateFilter( map, rows ){
+        function populateFilter( map, rows ){
             // Build sector list
             const sectorSet = new Set();
 
@@ -120,7 +120,7 @@
                 applySectorFilter(e.target.value);
             });
 
-/*           filterSelect.addEventListener("change", () => {
+           /*filterSelect.addEventListener("change", () => {
                 const selected = filterSelect.value;
 
                 if (selected === "all") map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
@@ -178,7 +178,7 @@
             }));
             const geojson = { type: "FeatureCollection", features: georows };
             fullGeoJSON = geojson;
-            console.log("GeoJSON: \n",geojson);
+            console.log("GeoJSON: \n",fullGeoJSON);
 
 
             // ┌────────────────────────────────────────────────────────────┐
