@@ -99,8 +99,10 @@
     <script>
         async function loadCSV() {
             const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
-            const rows = Papa.parse(text, {header: true, dynamicTyping: true, skipEmptyLines: true});
-            //const rows = parseCSV(text);
+            const response = await fetch(sheetUrl);
+            const csvText = await response.text();
+            const rows = Papa.parse(csvText, {header: true, dynamicTyping: true, skipEmptyLines: true});
+            //const rows = parseCSV(csvText);
             // ┌────────────────────────────────────────────────────────────┐
             // | Convert CSV into geojson format
             // └────────────────────────────────────────────────────────────┘
