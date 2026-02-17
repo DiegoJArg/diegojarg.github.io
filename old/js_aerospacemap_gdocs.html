@@ -83,28 +83,22 @@
           });
 
           filterSelect.addEventListener("change", () => {
-              const selected = filterSelect.value;
+                const selected = filterSelect.value;
 
-              if (selected === "all") {
-                  map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
-              } else {
-                  map.setFilter("unclustered-point", [
-                      "all",
-                      ["!", ["has", "point_count"]],
-                      ["==", ["get", "sector"], selected]
-                  ]);
-              }
+                if (selected === "all") map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
+                else map.setFilter("unclustered-point", [
+                        "all",
+                        ["!", ["has", "point_count"]],
+                        ["==", ["get", "sector"], selected]
+                ]);
 
-              // Clusters must also be filtered
-              if (selected === "all") {
-                  map.setFilter("clusters", ["has", "point_count"]);
-              } else {
-                  map.setFilter("clusters", [
-                      "all",
-                      ["has", "point_count"],
-                      ["==", ["get", "sector"], selected]
-                  ]);
-              }
+                // Clusters must also be filtered
+                if (selected === "all") map.setFilter("clusters", ["has", "point_count"]);
+                else map.setFilter("clusters", [
+                        "all",
+                        ["has", "point_count"],
+                        ["==", ["get", "sector"], selected]
+                ]);
           });
 
         }
@@ -117,7 +111,6 @@
                 header: true, dynamicTyping: true, skipEmptyLines: true,
                 transformHeader: header => header.trim().toLowerCase()
             });
-            populateFilter(map, rows);
             //const rows = parseCSV(csvText);
             console.log("Evaluating CSV data from: \n",sheetUrl,"\n\n", rows);
             // ┌────────────────────────────────────────────────────────────┐
@@ -252,6 +245,11 @@
                 });
             });
 
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Populate dropdown filter with unique sectors from the CSV and implement filtering logic to show/hide points based on selected sector
+            // └────────────────────────────────────────────────────────────┘
+            populateFilter(map, rows);
 
             // ┌────────────────────────────────────────────────────────────┐
             // | Add geolocation marker for user's current position
