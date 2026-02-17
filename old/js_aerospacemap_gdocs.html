@@ -57,6 +57,19 @@
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <script>
         let fullGeoJSON = null;
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Initialize MapLibre GL JS map with specified container, style, center, zoom level, and performance optimization for frequent data updates, setting the stage for dynamic map interactions and visualizations
+        // └────────────────────────────────────────────────────────────┘
+        const map = new maplibregl.Map({
+            container: "map",
+            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            //style: "https://api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            center: [4.357, 52.011], // Delft
+            zoom: 5,
+            willReadFrequently: true,
+        });
+
         // ┌────────────────────────────────────────────────────────────┐
         // | filter function to apply sector filter to the map by updating the data source with filtered GeoJSON based on selected sector, allowing dynamic visualization of points by sector
         // └────────────────────────────────────────────────────────────┘
@@ -78,18 +91,6 @@
         }
 
 
-
-        // ┌────────────────────────────────────────────────────────────┐
-        // | Initialize MapLibre GL JS map with specified container, style, center, zoom level, and performance optimization for frequent data updates, setting the stage for dynamic map interactions and visualizations
-        // └────────────────────────────────────────────────────────────┘
-        const map = new maplibregl.Map({
-            container: "map",
-            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
-            //style: "https://api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
-            center: [4.357, 52.011], // Delft
-            zoom: 5,
-            willReadFrequently: true,
-        });
 
         // ┌────────────────────────────────────────────────────────────┐
         // | Populate sector filter dropdown with unique sectors from the CSV data and add event listener to update map filters based on selected sector, allowing dynamic visualization of points by sector
