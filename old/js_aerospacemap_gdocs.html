@@ -124,10 +124,13 @@
               },
               properties: row // Include all other columns as properties, e.g. name, sector, etc.
             }));
-            //const geojson = { type: "FeatureCollection", features: georows };
+            const geojson = { type: "FeatureCollection", features: georows };
+            //console.log("GeoJSON: \n",geojson);
 
-            console.log("GeoJSON: \n",geojson);
 
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add clustered source and layers to the map, with dynamic styling based on cluster properties and individual point properties (e.g. sector)
+            // └────────────────────────────────────────────────────────────┘
             map.on("load", () => {
                 map.addSource("points", {
                     type: "geojson",
