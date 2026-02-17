@@ -93,12 +93,21 @@
                 ]);
 
                 // Clusters must also be filtered
-                if (selected === "all") map.setFilter("clusters", ["has", "point_count"]);
-                else map.setFilter("clusters", [
+                if (selected === "all") {
+                  map.setFilter("clusters", ["has", "point_count"]);
+                  map.setFilter("cluster-count", ["has", "point_count"]);
+                } else {
+                  map.setFilter("clusters", [
                         "all",
                         ["has", "point_count"],
                         ["==", ["get", "sector"], selected]
-                ]);
+                  ]);
+                  map.setFilter("cluster-count", [
+                        "all",
+                        ["has", "point_count"],
+                        ["==", ["get", "sector"], selected]
+                  ]);
+                }
           });
 
         }
@@ -275,7 +284,7 @@
                         .addTo(map);
 
                         // Optionally center the map on the user
-                        map.easeTo({ center: [lng, lat], zoom: 12 });
+                        //map.easeTo({ center: [lng, lat], zoom: 5 });
                     },
                     (err) => {
                         console.warn("Geolocation error:", err.message);
