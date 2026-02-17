@@ -139,6 +139,28 @@
                     }
                 });
 
+                // Dynamically generate colors for sectors
+                const sectorsColors = {};
+                let colorCount = 0;
+                rows.data.forEach(company => {
+                    const sector = (company.sector || "").trim();
+                    if (!sector) return;
+
+                    if (!sectorsColors[sector]) {
+                        const hue = (colorCount * 137.5) % 360;
+                        const color = `hsl(${hue}, 75%, 50%)`;
+                        sectorsColors[sector] = color;
+                        colorCount++;
+                    }
+                });
+                console.log("Dynamic sector colors:", sectorsColors);
+
+                const colorExpression = ["match", ["get", "sector"]];
+                Object.entries(sectorsColors).forEach(([sector, color]) => {
+                    colorExpression.push(sector, color);
+                });
+                colorExpression.push("#999999"); // Default color if sector not found
+
                 // Individual points
                 map.addLayer({
                     id: "unclustered-point",
@@ -146,8 +168,8 @@
                     source: "points",
                     filter: ["!", ["has", "point_count"]],
                     paint: {
-                        "circle-radius": 6,
-                        "circle-color": "#ff5500",
+                        "circle-radius": 7,
+                        "circle-color": colorExpression,
                         "circle-stroke-width": 1,
                         "circle-stroke-color": "#fff"
                     }
@@ -162,22 +184,27 @@
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
-                    .setHTML(`<strong>${name}</strong>`)
+                    .setHTML(`<strong>${name}</strong><br>Sector: ${props.sector || "N/A"}`)
                     .addTo(map);
             });
 
             // Add cluster expansion on click
             map.on("click", "clusters", (e) => {
-                const clusterId = e.features[0].properties.cluster_id;
+                if (!e.features || !e.features.length) return; // safety check
+
+                const feature = e.features[0];
+                const clusterId = feature.properties.cluster_id;
+
                 map.getSource("points").getClusterExpansionZoom(clusterId, (err, zoom) => {
                     if (err) return;
 
                     map.easeTo({
-                        center: e.features[0].geometry.coordinates,
+                        center: feature.geometry.coordinates,
                         zoom: zoom
                     });
                 });
             });
+
 
         }
 
