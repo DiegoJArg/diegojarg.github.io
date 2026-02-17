@@ -178,13 +178,15 @@
             }));
             const geojson = { type: "FeatureCollection", features: georows };
             fullGeoJSON = geojson;
-            //console.log("GeoJSON: \n",geojson);
+            console.log("GeoJSON: \n",geojson);
 
 
             // ┌────────────────────────────────────────────────────────────┐
             // | Add clustered source and layers to the map, with dynamic styling based on cluster properties and individual point properties (e.g. sector)
             // └────────────────────────────────────────────────────────────┘
             map.on("load", () => {
+                console.log("Map onLoad\n");
+
                 map.addSource("points", {
                     type: "geojson",
                     data: geojson,
@@ -272,6 +274,7 @@
                 // ┌────────────────────────────────────────────────────────────┐
                 // | Populate dropdown filter with unique sectors from the CSV and implement filtering logic to show/hide points based on selected sector
                 // └────────────────────────────────────────────────────────────┘
+                console.log("populateFilter\n");
                 populateFilter(map, rows);
 
 
@@ -341,8 +344,6 @@
             } else {
                 console.warn("Geolocation not supported in this browser.");
             }
-
-
         }
 
         loadCSV();
