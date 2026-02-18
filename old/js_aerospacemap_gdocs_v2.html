@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>MapTiler Aerospace Test</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link href="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.css" rel="stylesheet"/>
+
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .marker {
+            background-color: #ff5722;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .marker::before { content: ""; }
+        .icon-newspace::before { content: "🛰️"; }
+        .icon-traditional_space::before { content: "🛰️"; }
+        .icon-space_academic::before { content: "🛰️"; }
+        .icon-space_products::before { content: "🛰️"; }
+        .icon-space_services::before { content: "🛰️"; }
+        .icon-space_structures::before { content: "🛰️"; }
+        .icon-defense::before { content: "🚀"; }
+        .icon-spacelaunchers::before { content: "🚀"; }
+        .icon-aerospace::before { content: "✈️"; }
+        .icon-automotive::before { content: "🚗"; }
+        .icon-instruments::before { content: "🔬"; }
+        .icon-consumer::before { content: "📱"; }
+        .icon-space_products::before { content: "🛰️"; }
+        .icon-sensors::before { content: "📡"; }
+    </style>
+</head>
+<body>
+    <select id="sectorFilter">
+        <option value="all">All sectors</option>
+    </select>
+
+    <div id="map"></div>
+
+    <script src="https://cdn.maptiler.com/maplibre-gl-js/v2.4.0/maplibre-gl.js"></script>
+    <script src="papaparse.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script> -->
+    <script>
+        let fullGeoJSON = null;
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Initialize MapLibre GL JS map with specified container, style, center, zoom level, and performance optimization for frequent data updates, setting the stage for dynamic map interactions and visualizations
+        // └────────────────────────────────────────────────────────────┘
+        const map = new maplibregl.Map({
+            container: "map",
+            style: "https://api.maptiler.com/maps/base-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            //style: "https://api.maptiler.com/maps/backdrop-v4/style.json?key=pp8QjSkZQbilx8POWDXf",
+            center: [4.357, 52.011], // Delft
+            zoom: 5,
+            willReadFrequently: true,
+        });
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | filter function to apply sector filter to the map by updating the data source with filtered GeoJSON based on selected sector, allowing dynamic visualization of points by sector
+        // └────────────────────────────────────────────────────────────┘
+        function applySectorFilter(sector) {
+            let filtered;
+
+            if (sector === "all") {
+                filtered = fullGeoJSON;
+            } else {
+                filtered = {
+                    type: "FeatureCollection",
+                    features: fullGeoJSON.features.filter(
+                        f => f.properties.sector === sector
+                    )
+                };
+            }
+
+            map.getSource("points").setData(filtered);
+        }
+
+
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Populate sector filter dropdown with unique sectors from the CSV data and add event listener to update map filters based on selected sector, allowing dynamic visualization of points by sector
+        // └────────────────────────────────────────────────────────────┘
+        function populateFilter( map, rows ){
+            // Build sector list
+            const sectorSet = new Set();
+
+            rows.data.forEach(row => {
+                if (row.sector) sectorSet.add(row.sector.trim());
+            });
+
+            // Populate dropdown
+            const filterSelect = document.getElementById("sectorFilter");
+            sectorSet.forEach(sector => {
+                const opt = document.createElement("option");
+                opt.value = sector;
+                opt.textContent = sector;
+                filterSelect.appendChild(opt);
+            });
+
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add event listener to sector filter dropdown to apply selected sector filter to the map, allowing dynamic visualization of points by sector based on user selection
+            // └────────────────────────────────────────────────────────────┘
+            document.getElementById("sectorFilter").addEventListener("change", (e) => {
+                applySectorFilter(e.target.value);
+            });
+
+           /*filterSelect.addEventListener("change", () => {
+                const selected = filterSelect.value;
+
+                if (selected === "all") map.setFilter("unclustered-point", ["!", ["has", "point_count"]]);
+                else map.setFilter("unclustered-point", [
+                        "all",
+                        ["!", ["has", "point_count"]],
+                        ["==", ["get", "sector"], selected]
+                ]);
+
+                // Clusters must also be filtered
+                if (selected === "all") {
+                  map.setFilter("clusters", ["has", "point_count"]);
+                  map.setFilter("cluster-count", ["has", "point_count"]);
+                } else {
+                  map.setFilter("clusters", [
+                        "all",
+                        ["has", "point_count"],
+                        ["==", ["get", "sector"], selected]
+                  ]);
+                  map.setFilter("cluster-count", [
+                        "all",
+                        ["has", "point_count"],
+                        ["==", ["get", "sector"], selected]
+                  ]);
+                }
+          }); */
+
+        }
+
+
+
+        // ┌────────────────────────────────────────────────────────────┐
+        // | Load CSV data from Google Sheets, parse it, and convert it into GeoJSON format with proper handling of coordinates and properties
+        // └────────────────────────────────────────────────────────────┘
+        async function loadCSV() {
+            const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcetaT08sOuaF5iJnxU6hWsz0-BaWsoEbznehEsgKE4oSMyIfPim-XVTIf9waRJne987bAThY_RqOy/pub?gid=0&single=true&output=csv";
+            const response = await fetch(sheetUrl);
+            const csvText = await response.text();
+            const rows = Papa.parse(csvText, {
+                header: true, dynamicTyping: true, skipEmptyLines: true,
+                transformHeader: header => header.trim().toLowerCase()
+            });
+            //const rows = parseCSV(csvText);
+            console.log("Evaluating CSV data from: \n",sheetUrl,"\n\n", rows);
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Convert CSV into geojson format
+            // └────────────────────────────────────────────────────────────┘
+            const georows = rows.data.map(row => ({
+              type: "Feature",
+              geometry: {
+                  type: "Point",
+                  coordinates: row.coords.split(",").map(Number) // [row.longitude, row.latitude] },
+              },
+              properties: row // Include all other columns as properties, e.g. name, sector, etc.
+            }));
+            const geojson = { type: "FeatureCollection", features: georows };
+            fullGeoJSON = geojson;
+            console.log("GeoJSON: \n",fullGeoJSON);
+
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add clustered source and layers to the map, with dynamic styling based on cluster properties and individual point properties (e.g. sector)
+            // └────────────────────────────────────────────────────────────┘
+            map.on("load", () => {
+                console.log("Map onLoad\n");
+
+                map.addSource("points", {
+                    type: "geojson",
+                    data: geojson,
+                    cluster: true,
+                    clusterRadius: 50,
+                    clusterMaxZoom: 12
+                });
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Cluster circles with dynamic radius based on the number of points in the cluster using the built-in {point_count} property
+                // └────────────────────────────────────────────────────────────┘
+                map.addLayer({
+                    id: "clusters",
+                    type: "circle",
+                    source: "points",
+                    filter: ["has", "point_count"],
+                    paint: {
+                        "circle-color": "#ff8800",
+                        "circle-radius": [
+                            "step",
+                            ["get", "point_count"],
+                            15, 20,
+                            20, 50,
+                            30
+                        ]
+                    }
+
+                });
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Cluster count labels using the built-in {point_count_abbreviated} property for better readability of large counts
+                // └────────────────────────────────────────────────────────────┘
+                map.addLayer({
+                    id: "cluster-count",
+                    type: "symbol",
+                    source: "points",
+                    filter: ["has", "point_count"],
+                    layout: {
+                        "text-field": "{point_count_abbreviated}",
+                        "text-size": 12
+                    }
+                });
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Dynamically generate colors for sectors and apply to individual points based on their sector property
+                // └────────────────────────────────────────────────────────────┘
+                const sectorsColors = {};
+                let colorCount = 0;
+                rows.data.forEach(company => {
+                    const sector = (company.sector || "").trim();
+                    if (!sector) return;
+
+                    if (!sectorsColors[sector]) {
+                        const hue = (colorCount * 137.5) % 360;
+                        const color = `hsl(${hue}, 75%, 50%)`;
+                        sectorsColors[sector] = color;
+                        colorCount++;
+                    }
+                });
+                console.log("Dynamic sector colors:", sectorsColors);
+
+                const colorExpression = ["match", ["get", "sector"]];
+                Object.entries(sectorsColors).forEach(([sector, color]) => {
+                    colorExpression.push(sector, color);
+                });
+                colorExpression.push("#999999"); // Default color if sector not found
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Individual points layer with dynamic colors based on sector
+                // └────────────────────────────────────────────────────────────┘
+                map.addLayer({
+                    id: "unclustered-point",
+                    type: "circle",
+                    source: "points",
+                    filter: ["!", ["has", "point_count"]],
+                    paint: {
+                        "circle-radius": 7,
+                        "circle-color": colorExpression,
+                        "circle-stroke-width": 1,
+                        "circle-stroke-color": "#fff"
+                    }
+                });
+
+
+                // ┌────────────────────────────────────────────────────────────┐
+                // | Populate dropdown filter with unique sectors from the CSV and implement filtering logic to show/hide points based on selected sector
+                // └────────────────────────────────────────────────────────────┘
+                console.log("populateFilter\n");
+                populateFilter(map, rows);
+
+
+            });
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add popup on click for individual points to show desired text (e.g. company name, sector, etc.)
+            // └────────────────────────────────────────────────────────────┘
+            map.on("click", "unclustered-point", (e) => {
+                const props = e.features[0].properties;
+                const name = props.name || "Unknown";
+
+                new maplibregl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(`<strong>${name}</strong><br>Sector: ${props.sector || "N/A"}`)
+                    .addTo(map);
+            });
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add click event to expand clusters and zoom into them
+            // └────────────────────────────────────────────────────────────┘
+            map.on("click", "clusters", (e) => {
+                if (!e.features || !e.features.length) return; // safety check
+
+                const feature = e.features[0];
+                const clusterId = feature.properties.cluster_id;
+
+                map.getSource("points").getClusterExpansionZoom(clusterId, (err, zoom) => {
+                    if (err) return;
+
+                    map.easeTo({
+                        center: feature.geometry.coordinates,
+                        zoom: zoom
+                    });
+                });
+            });
+
+
+            // ┌────────────────────────────────────────────────────────────┐
+            // | Add geolocation marker for user's current position
+            // └────────────────────────────────────────────────────────────┘
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const lng = pos.coords.longitude;
+                        const lat = pos.coords.latitude;
+
+                        // Add a marker for the user's location
+                        new maplibregl.Marker({
+                            color: "#007aff" // iOS blue, stands out nicely
+                        })
+                        .setLngLat([lng, lat])
+                        .setPopup(new maplibregl.Popup().setHTML("<strong>You are here</strong>"))
+                        .addTo(map);
+
+                        // Optionally center the map on the user
+                        //map.easeTo({ center: [lng, lat], zoom: 5 });
+                    },
+                    (err) => {
+                        console.warn("Geolocation error:", err.message);
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000
+                    }
+                );
+            } else {
+                console.warn("Geolocation not supported in this browser.");
+            }
+        }
+
+        loadCSV();
+    </script>
+
+</body>
+</html>

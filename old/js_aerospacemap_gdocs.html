@@ -182,10 +182,24 @@
             console.log("GeoJSON: \n",fullGeoJSON);
 
 
+
+
+
             // ┌────────────────────────────────────────────────────────────┐
             // | Add clustered source and layers to the map, with dynamic styling based on cluster properties and individual point properties (e.g. sector)
             // └────────────────────────────────────────────────────────────┘
-            map.on("load", () => {
+            // TODO: Some times the map doesn't load, maybe due to CORS issues with the CSV or timing of map loading vs data loading.
+            // // Consider adding error handling and ensuring map is fully loaded before adding sources/layers.
+            function onMapLoaded(map, callback) {
+              if (map.loaded()) {
+                callback();
+              } else {
+                map.once('load', callback);
+              }
+            }
+
+            onMapLoaded(map, () => {
+
                 console.log("Map onLoad\n");
 
                 map.addSource("points", {
@@ -314,6 +328,7 @@
             });
 
 
+
             // ┌────────────────────────────────────────────────────────────┐
             // | Add geolocation marker for user's current position
             // └────────────────────────────────────────────────────────────┘
@@ -347,7 +362,12 @@
             }
         }
 
+
         loadCSV();
+
+
+
+
     </script>
 
 </body>
