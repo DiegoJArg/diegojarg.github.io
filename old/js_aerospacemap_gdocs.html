@@ -273,10 +273,14 @@
             map.on("click", "unclustered-point", (e) => {
                 const props = e.features[0].properties;
                 const name = props.name || "Unknown";
+                const careers = "";
+
+                if (props.CareersSite)
+                    careers += '<br><a href='${props.CareersSite || ""}'>Careers</a>';
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
-                    .setHTML(`<strong>${name}</strong><br>Sector: ${props.sector || "N/A"}`)
+                    .setHTML(`<strong>${name}</strong>`+careers)
                     .addTo(map);
             });
 
