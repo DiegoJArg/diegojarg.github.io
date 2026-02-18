@@ -264,7 +264,6 @@
                 console.log("populateFilter\n");
                 populateFilter(map, rows);
 
-
             });
 
             // ┌────────────────────────────────────────────────────────────┐
@@ -276,7 +275,7 @@
                 const careers = "";
 
                 if (props.CareersSite)
-                    careers += '<br><a href='${props.CareersSite || ""}'>Careers</a>';
+                    careers += `<br><a href='${props.CareersSite || ""}'>Careers</a>`;
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
