@@ -272,10 +272,12 @@
             map.on("click", "unclustered-point", (e) => {
                 const props = e.features[0].properties;
                 const name = props.name || "Unknown";
-                const careers = "";
 
-                if (props.careerssite)
-                    careers += `<br><a href='${props.careerssite || ""}'>Careers</a>`;
+                if (props.careerssite) {
+                    const careers = `<br><a href='${props.careerssite || ""}'>Careers</a>`;
+                } else {
+                    const careers = "";
+                }
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
