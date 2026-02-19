@@ -274,8 +274,8 @@
                 const name = props.name || "Unknown";
                 const careers = "";
 
-                if (props.CareersSite)
-                    careers += `<br><a href='${props.CareersSite || ""}'>Careers</a>`;
+                if (props.careerssite)
+                    careers += `<br><a href='${props.careerssite || ""}'>Careers</a>`;
 
                 new maplibregl.Popup()
                     .setLngLat(e.lngLat)
