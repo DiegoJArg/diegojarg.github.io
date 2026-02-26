@@ -147,17 +147,19 @@
 
             console.log("Segments for dropdown:", segments);
 
-            Object.entries(segments).forEach(segName => {
-                    const group = document.createElement("optgroup");
-                    group.label = segName;
+            Object.entries(segments).forEach(([segName, sectorList]) => {
+                if (sectorList.length === 0) return;
 
-                    Object.entries(segments[segName]).forEach(({ sector, count }) => {
-                        const opt = document.createElement("option");
-                        opt.value = sector;
-                        opt.textContent = `${sector} (${count})`;
-                        group.appendChild(opt);
-                    });
-                    filterSelect.appendChild(group);
+                const group = document.createElement("optgroup");
+                group.label = segName;
+
+                sectorList.forEach(({ sector, count }) => {
+                    const opt = document.createElement("option");
+                    opt.value = sector;
+                    opt.textContent = `${sector} (${count})`;
+                    group.appendChild(opt);
+                });
+                filterSelect.appendChild(group);
             });
 
             // Add event listener
