@@ -142,7 +142,7 @@
             // Populate dropdown with grouped options
             const filterSelect = document.getElementById("sectorFilter");
 
-            ["Sattelite Segment", "Launch Segment", "Ground Segment", "Others"].forEach(segName => {
+            segments.forEach(segName => {
                 const groupedSectors = segments[segName];
                 if (groupedSectors.length > 0) {
                     const group = document.createElement("optgroup");
