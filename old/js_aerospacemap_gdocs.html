@@ -121,6 +121,9 @@
                 "Others": []
             };
 
+
+            console.log("Sector counts:", sectorCounts);
+
             // Categorize unique sectors into segments based on keywords
             Object.entries(sectorCounts).forEach(([sector, count]) => {
                 const s = sector.toLowerCase();
@@ -141,6 +144,8 @@
 
             // Populate dropdown with grouped options
             const filterSelect = document.getElementById("sectorFilter");
+
+            console.log("Segments for dropdown:", segments);
 
             Object.entries(segments).forEach(segName => {
                     const group = document.createElement("optgroup");
