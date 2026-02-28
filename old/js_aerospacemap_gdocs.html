@@ -184,6 +184,8 @@
             });
             //const rows = parseCSV(csvText);
             console.log("Evaluating CSV data from: \n",sheetUrl,"\n\n", rows);
+
+
             // ┌────────────────────────────────────────────────────────────┐
             // | Convert CSV into geojson format
             // └────────────────────────────────────────────────────────────┘
@@ -199,7 +201,23 @@
             fullGeoJSON = geojson;
             console.log("GeoJSON: \n",fullGeoJSON);
 
+            // ┌────────────────────────────────────────────────────────────┐
+            // | for each row.coords in rows.data that has the same coordinate pairs,
+            // | add an small constant offset and a connecting line so they don't fall into the same place
+            // └────────────────────────────────────────────────────────────┘
 
+            const coordCounts = {};
+            geojson.features.forEach(feature => {
+                const key = feature.geometry.coordinates.join(",");
+                if (coordCounts[key]) {
+                    const n = coordCounts[key];
+                    feature.geometry.coordinates[0] += n * 0.0001;
+                    feature.geometry.coordinates[1] += n * 0.0001;
+                    coordCounts[key]++;
+                } else {
+                    coordCounts[key] = 1;
+                }
+            });
 
 
 
